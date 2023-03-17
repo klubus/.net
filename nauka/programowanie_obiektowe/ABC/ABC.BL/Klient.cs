@@ -28,7 +28,7 @@
         {
             get
             {
-                return Nazwisko + "," + Imie;
+                return Imie + ", " + Nazwisko;
             }
         }
     }
