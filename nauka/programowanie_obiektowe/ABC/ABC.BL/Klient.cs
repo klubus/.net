@@ -4,6 +4,16 @@ namespace ABC.BL
 {
     public class Klient
     {
+        public Klient()
+        {
+
+        }
+
+        public Klient(int klientId)
+        {
+            KlientId = klientId;
+        }
+
         public static int Licznik { get; set; }
 
 
@@ -69,12 +79,21 @@ namespace ABC.BL
             return true;
         }
 
+        /// <summary>
+        /// Pobieramy jednego klienta
+        /// </summary>
+        /// <param name="klientId"></param>
+        /// <returns></returns>
         public Klient Pobierz(int klientId)
         {
             // kod, który pobiera określonego klienta
             return new Klient();
         }
 
+        /// <summary>
+        /// Pobieramy wszystkich klientów
+        /// </summary>
+        /// <returns></returns>
         public List<Klient> Pobierz()
         {
             // kod, który pobiera wszystkich klientów
