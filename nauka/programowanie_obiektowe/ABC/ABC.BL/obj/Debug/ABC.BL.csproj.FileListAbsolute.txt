@@ -1,6 +1,0 @@
-C:\Users\kluba\Pulpit\.net\nauka\programowanie_obiektowe\ABC\ABC.BL\bin\Debug\ABC.BL.dll
-C:\Users\kluba\Pulpit\.net\nauka\programowanie_obiektowe\ABC\ABC.BL\bin\Debug\ABC.BL.pdb
-C:\Users\kluba\Pulpit\.net\nauka\programowanie_obiektowe\ABC\ABC.BL\obj\Debug\ABC.BL.csproj.AssemblyReference.cache
-C:\Users\kluba\Pulpit\.net\nauka\programowanie_obiektowe\ABC\ABC.BL\obj\Debug\ABC.BL.csproj.CoreCompileInputs.cache
-C:\Users\kluba\Pulpit\.net\nauka\programowanie_obiektowe\ABC\ABC.BL\obj\Debug\ABC.BL.dll
-C:\Users\kluba\Pulpit\.net\nauka\programowanie_obiektowe\ABC\ABC.BL\obj\Debug\ABC.BL.pdb
