@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ABC.BL
+﻿namespace ABC.BL
 {
     public class Klient
     {
@@ -69,35 +67,5 @@ namespace ABC.BL
             return poprawne;
         }
 
-        /// <summary>
-        /// Zapisujemy obecnego klienta
-        /// </summary>
-        /// <returns></returns>
-        public bool Zapisz()
-        {
-            // kod, który zapisuje zdefiniowanego klienta
-            return true;
-        }
-
-        /// <summary>
-        /// Pobieramy jednego klienta
-        /// </summary>
-        /// <param name="klientId"></param>
-        /// <returns></returns>
-        public Klient Pobierz(int klientId)
-        {
-            // kod, który pobiera określonego klienta
-            return new Klient();
-        }
-
-        /// <summary>
-        /// Pobieramy wszystkich klientów
-        /// </summary>
-        /// <returns></returns>
-        public List<Klient> Pobierz()
-        {
-            // kod, który pobiera wszystkich klientów
-            return new List<Klient>();
-        }
     }
 }

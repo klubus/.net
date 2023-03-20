@@ -31,12 +31,12 @@ namespace ABC.BL
             // Tymczasowo zakodowane wartości, aby zwrócić klienta
             if (klientId == 1)
             {
-                klient.Email = "marcin@dev-hobyy.pl";
+                klient.Email = "marcin@dev-hobby.pl";
                 klient.Imie = "Marcin";
                 klient.Nazwisko = "Nowak";
             }
 
-            return new Klient();
+            return klient;
         }
 
 
