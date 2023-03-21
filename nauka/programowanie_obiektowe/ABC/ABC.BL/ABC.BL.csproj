@@ -46,6 +46,7 @@
     <Compile Include="KlientRepository.cs" />
     <Compile Include="PozycjaZamowienia.cs" />
     <Compile Include="Produkt.cs" />
+    <Compile Include="ProduktRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Zamowienie.cs" />
   </ItemGroup>

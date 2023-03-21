@@ -19,7 +19,7 @@
             {
                 produkt.NazwaProduktu = "Klocki";
                 produkt.Opis = "Klocki do zabawy dla dzieci powyżej 3 lat";
-                produkt.AktualnaCena = 199.99M;
+                produkt.AktualnaCena = 119.99M;
 
             }
 
