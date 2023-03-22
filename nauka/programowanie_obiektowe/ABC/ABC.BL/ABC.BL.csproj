@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adres.cs" />
+    <Compile Include="AdresRepository.cs" />
     <Compile Include="Klient.cs" />
     <Compile Include="KlientRepository.cs" />
     <Compile Include="PozycjaZamowienia.cs" />
