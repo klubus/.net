@@ -5,7 +5,9 @@ ABC/.vs/
 /ABC/ABC.BL/bin
 /ABC/ABC.BLTest/obj
 /ABC/ABC.BLTest/bin
-
+../../../.vs/
+../../.vs/
+../.vs/
 
 
 
