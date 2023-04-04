@@ -49,8 +49,11 @@
     <Compile Include="Produkt.cs" />
     <Compile Include="ProduktRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WyswietlaniePozycjiZamowienia.cs" />
+    <Compile Include="WyswietlanieZamowienia.cs" />
     <Compile Include="Zamowienie.cs" />
     <Compile Include="ZamowienieRepository.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
