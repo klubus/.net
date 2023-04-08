@@ -32,10 +32,24 @@
         /// </summary>
         /// <param name="produktId"></param>
         /// <returns></returns>
-        public bool Zapisz()
+        public bool Zapisz(Produkt produkt)
         {
             // kod, który zapisuje zdefiniowany produkt
-            return true;
+            var suckes = true;
+
+            if (produkt.MaZmiany && produkt.DaneSaPrawidlowe)
+            {
+                if (produkt.JestNowy)
+                {
+                    // wywołujemy procedure składowaną insert
+                }
+                else
+                {
+                    // wywołujemy procedure składowaną update
+                }
+            }
+
+            return suckes;
         }
     }
 }

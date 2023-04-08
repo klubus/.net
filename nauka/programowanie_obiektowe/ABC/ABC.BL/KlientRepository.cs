@@ -18,8 +18,22 @@ namespace ABC.BL
         /// 
         public bool Zapisz(Klient klient)
         {
-            // kod, który zapisuje zdefiniowanego klienta
-            return true;
+            // kod, który zapisuje zdefiniowany produkt
+            var suckes = true;
+
+            if (klient.MaZmiany && klient.DaneSaPrawidlowe)
+            {
+                if (klient.JestNowy)
+                {
+                    // wywołujemy procedure składowaną insert
+                }
+                else
+                {
+                    // wywołujemy procedure składowaną update
+                }
+            }
+
+            return suckes;
         }
 
 
