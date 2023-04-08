@@ -2,7 +2,7 @@
 
 namespace ABC.BL
 {
-    public class Produkt
+    public class Produkt : KlasaBazowa
     {
         public Produkt()
         {
@@ -45,7 +45,7 @@ namespace ABC.BL
         /// Sprawdzamy dane produktu
         /// </summary>
         /// <returns></returns>
-        public bool Zwaliduj()
+        public override bool Zwaliduj()
         {
             var poprawne = true;
 
