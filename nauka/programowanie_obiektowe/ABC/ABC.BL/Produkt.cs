@@ -24,7 +24,7 @@ namespace ABC.BL
         {
             get
             {
-                return ObslugaStringa.WstawSpacje(_nazwaProduktu);
+                return _nazwaProduktu.WstawSpacje();
             }
             set { _nazwaProduktu = value; }
         }
