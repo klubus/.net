@@ -67,10 +67,5 @@ namespace ABC.BL
             return NazwaProduktu;
         }
 
-        public string WstawSpacje(string zrodlo)
-        {
-
-        }
-
     }
 }
