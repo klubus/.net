@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 
 namespace ABC.BL
 {
@@ -17,12 +18,15 @@ namespace ABC.BL
         public int ProduktId { get; private set; }
         public Decimal? AktualnaCena { get; set; }
         public string Opis { get; set; }
-        private string _NazwaProduktu;
+        private string _nazwaProduktu;
 
         public string NazwaProduktu
         {
-            get { return _NazwaProduktu; }
-            set { _NazwaProduktu = value; }
+            get
+            {
+                return ObslugaStringa.WstawSpacje(_nazwaProduktu);
+            }
+            set { _nazwaProduktu = value; }
         }
 
 
