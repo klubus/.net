@@ -76,7 +76,7 @@ namespace ABC.BL
             var logTekst = ProduktId + ": " +
                            NazwaProduktu + " " +
                            "Opis: " + Opis + " " +
-                           "Status" + StanObiektu.ToString();
+                           "Status: " + StanObiektu.ToString();
             return logTekst;
         }
 
