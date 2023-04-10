@@ -3,7 +3,7 @@ using System;
 
 namespace ABC.BL
 {
-    public class Produkt : KlasaBazowa
+    public class Produkt : KlasaBazowa, ILogowanie
     {
         public Produkt()
         {
@@ -71,5 +71,15 @@ namespace ABC.BL
             return NazwaProduktu;
         }
 
+        public string Log()
+        {
+            var logTekst = ProduktId + ": " +
+                           NazwaProduktu + " " +
+                           "Opis: " + Opis + " " +
+                           "Status" + StanObiektu.ToString();
+            return logTekst;
+        }
+
     }
+
 }

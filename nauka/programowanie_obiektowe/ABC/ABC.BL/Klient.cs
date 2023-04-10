@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Common;
+using System.Collections.Generic;
 
 namespace ABC.BL
 {
-    public class Klient : KlasaBazowa
+    public class Klient : KlasaBazowa, ILogowanie
     {
         public Klient() : this(0)
         {
@@ -76,6 +77,15 @@ namespace ABC.BL
         public override string ToString()
         {
             return ImieNazwisko;
+        }
+
+        public string Log()
+        {
+            var logTekst = KlientId + ": " +
+                           ImieNazwisko + " " +
+                           "Email: " + Email + " " +
+                           "Status: " + StanObiektu.ToString();
+            return logTekst;
         }
 
     }
