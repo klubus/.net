@@ -15,7 +15,7 @@ namespace _1_TypyGeneryczneTests
         }
 
         [TestMethod]
-        public void KolejkaTrzyElementowaJestPelnaPoTrzechZapisach()
+        public void KolejkaTrzyElementowaJestPelnaPoTrzechZapisach() 
         {
             var kolejka = new KolejkaKolowa(pojemnosc: 3);
             kolejka.Zapisz(3.8);
@@ -26,11 +26,12 @@ namespace _1_TypyGeneryczneTests
         }
 
         [TestMethod]
-        public void PierwszyWchodziPierwszyWychodzi()
+        public void PierwszyWchodziPierwszyWychodzi() 
         {
             var kolejka = new KolejkaKolowa(pojemnosc: 3);
-            var wartosc1 = 4.6;
-            var wartosc2 = 3.7;
+            var wartosc1 = "4.6";
+            var wartosc2 = "3.7";
+
             kolejka.Zapisz(wartosc1);
             kolejka.Zapisz(wartosc2);
 
@@ -40,7 +41,7 @@ namespace _1_TypyGeneryczneTests
         }
 
         [TestMethod]
-        public void NadpisujeGdyJestWiekszaNizPojemnosc()
+        public void NadpisujeGdyJestWiekszaNizPojemnosc() 
         {
             var kolejka = new KolejkaKolowa(pojemnosc: 3);
             var wartosci = new[] { 1.2, 2.4, 3.6, 4.8, 5.3, 6.8 };

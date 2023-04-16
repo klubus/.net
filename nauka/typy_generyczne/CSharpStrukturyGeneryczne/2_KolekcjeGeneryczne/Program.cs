@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2_KolekcjeGeneryczne
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {

@@ -2,11 +2,11 @@
 
 namespace _1_TypyGeneryczne
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            var kolejka = new KolejkaKolowa(pojemnosc: 5);
+            var kolejka = new KolejkaKolowa(pojemnosc: 3);
 
             while (true)
             {
@@ -24,21 +24,19 @@ namespace _1_TypyGeneryczne
             kolejka.Zapisz("Marcin");
 
             var suma = 0.0;
-
             Console.WriteLine("W naszej kolejce jest :");
 
             while (!kolejka.JestPusty)
             {
                 var wartosc = kolejka.Czytaj();
+
                 if (wartosc is double)
                 {
                     suma += (double)wartosc;
-                }
-
+                }               
             }
             Console.WriteLine(suma);
 
-            Console.ReadKey();
         }
     }
 }
