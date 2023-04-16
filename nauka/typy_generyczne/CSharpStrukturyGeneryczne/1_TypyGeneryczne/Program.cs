@@ -21,19 +21,12 @@ namespace _1_TypyGeneryczne
                 break;
             }
 
-            kolejka.Zapisz("Marcin");
-
             var suma = 0.0;
             Console.WriteLine("W naszej kolejce jest :");
 
             while (!kolejka.JestPusty)
             {
-                var wartosc = kolejka.Czytaj();
-
-                if (wartosc is double)
-                {
-                    suma += (double)wartosc;
-                }               
+                suma += kolejka.Czytaj();
             }
             Console.WriteLine(suma);
 
