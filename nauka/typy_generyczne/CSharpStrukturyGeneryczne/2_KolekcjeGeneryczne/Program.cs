@@ -7,19 +7,18 @@ namespace _2_KolekcjeGeneryczne
     {
         static void Main(string[] args)
         {
-            var liczby = new List<int>(10);
-            var pojemnosc = -1;
+            Queue<Pracownik> kolejka = new Queue<Pracownik>();
+            kolejka.Enqueue(new Pracownik { Imie = "Marcin", Nazwisko = "Nowak" });
+            kolejka.Enqueue(new Pracownik { Imie = "Tomek", Nazwisko = "Nowak" });
+            kolejka.Enqueue(new Pracownik { Imie = "Jacek", Nazwisko = "Zajac" });
+            kolejka.Enqueue(new Pracownik { Imie = "Ola", Nazwisko = "Kaczor" });
 
-            while (true)
+            while (kolejka.Count > 0)
             {
-                if (liczby.Capacity != pojemnosc)
-                {
-                    pojemnosc = liczby.Capacity;
-                    Console.WriteLine(pojemnosc);
-                }
-                liczby.Add(1);
-
+                var pracownik = kolejka.Dequeue();
+                Console.WriteLine(pracownik.Imie + " " + pracownik.Nazwisko);
             }
+            Console.ReadKey();
         }
     }
 }
