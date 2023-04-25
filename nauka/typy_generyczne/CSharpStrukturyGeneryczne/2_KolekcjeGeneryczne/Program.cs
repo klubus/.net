@@ -13,7 +13,30 @@ namespace _2_KolekcjeGeneryczne
             //LinkedList();
             //LinkedList2();
             //Dictionary();
+            //SortedDictionary();
 
+            SortedList();
+
+            Console.ReadKey();
+        }
+
+        private static void SortedList()
+        {
+            var listaPosortowana = new SortedList<int, string>();
+
+            listaPosortowana.Add(3, "trzy");
+            listaPosortowana.Add(1, "jeden");
+            listaPosortowana.Add(4, "cztery");
+            listaPosortowana.Add(2, "dwa");
+
+            foreach (var item in listaPosortowana)
+            {
+                Console.WriteLine(item.Value);
+            }
+        }
+
+        private static void SortedDictionary()
+        {
             var pracownicy = new SortedDictionary<string, List<Pracownik>>();
             pracownicy.Add("Sprzedaz", new List<Pracownik> { new Pracownik { Imie = "Jan", Nazwisko = "Kowal"},
                                                              new Pracownik { Imie = "Tomek", Nazwisko = "Nowak"},
@@ -31,7 +54,6 @@ namespace _2_KolekcjeGeneryczne
             {
                 Console.WriteLine("Ilość pracowników w dziale {0} wynosi: {1}", item.Key, item.Value.Count);
             }
-            Console.ReadKey();
         }
 
         private static void Dictionary()
