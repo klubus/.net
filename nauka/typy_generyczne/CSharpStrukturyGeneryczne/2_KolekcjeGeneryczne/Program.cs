@@ -15,8 +15,7 @@ namespace _2_KolekcjeGeneryczne
             //Dictionary();
             //SortedDictionary();
             //SortedList();
-
-            SortedSet();
+            //SortedSet();
 
             Console.ReadKey();
         }
