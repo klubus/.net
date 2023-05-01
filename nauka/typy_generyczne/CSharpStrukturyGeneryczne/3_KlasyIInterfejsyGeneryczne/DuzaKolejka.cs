@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace _3_KlasyIInterfejsyGeneryczne
 {
@@ -29,6 +30,23 @@ namespace _3_KlasyIInterfejsyGeneryczne
         public virtual void Zapisz(T wartosc)
         {
             kolejka.Enqueue(wartosc);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            //return kolejka.GetEnumerator();
+
+            foreach (var item in kolejka)
+            {
+                // filtrowanie
+
+                yield return item;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
