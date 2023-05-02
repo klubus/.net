@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace _4_KlasyIInterfejsyGeneryczne
+namespace _4_MetodyDelegatyGeneryczne
 {
     public interface IKolejka<T> : IEnumerable<T>
     {

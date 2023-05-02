@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace _4_KlasyIInterfejsyGeneryczne
+namespace _4_MetodyDelegatyGeneryczne
 {
     public class DuzaKolejka<T> : IKolejka<T>
     {

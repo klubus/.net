@@ -1,4 +1,4 @@
-﻿namespace _4_KlasyIInterfejsyGeneryczne
+﻿namespace _4_MetodyDelegatyGeneryczne
 {
     public class KolejkaKolowa<T> : DuzaKolejka<T>
     {
