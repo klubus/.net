@@ -6,16 +6,18 @@ namespace _4_MetodyDelegatyGeneryczne
     {
         static void Main(string[] args)
         {
-            Action<bool> drukuj = x => Console.WriteLine(x);
-            Func<double, double> potegowanie = d => d * d;
-            Func<double, double, double> dodaj = (x, y) => x + y;
-            Predicate<double> jestMniejszeOdSto = d => d < 100;
-
-            drukuj(jestMniejszeOdSto(potegowanie(dodaj(6, 8))));
+            //ActionFuncPredicate();
 
             var kolejka = new KolejkaKolowa<double>();
 
             WprowadzanieDanych(kolejka);
+
+            var jakoData = kolejka.Mapuj(d => new DateTime(2018, 1, 1).AddDays(d));
+
+            foreach (var item in jakoData)
+            {
+                Console.WriteLine(item);
+            }
 
             kolejka.Drukuj(d => Console.WriteLine(d));
 
@@ -23,6 +25,16 @@ namespace _4_MetodyDelegatyGeneryczne
 
             Console.ReadKey();
 
+        }
+
+        private static void ActionFuncPredicate()
+        {
+            Action<bool> drukuj = x => Console.WriteLine(x);
+            Func<double, double> potegowanie = d => d * d;
+            Func<double, double, double> dodaj = (x, y) => x + y;
+            Predicate<double> jestMniejszeOdSto = d => d < 100;
+
+            drukuj(jestMniejszeOdSto(potegowanie(dodaj(6, 8))));
         }
 
         private static void PrzetwarzanieDanych(IKolejka<double> kolejka)
