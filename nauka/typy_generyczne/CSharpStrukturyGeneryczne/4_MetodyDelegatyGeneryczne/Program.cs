@@ -1,22 +1,25 @@
 ﻿using System;
+using static _4_MetodyDelegatyGeneryczne.KolejkaExtensions;
 
 namespace _4_MetodyDelegatyGeneryczne
 {
     class Program
     {
+        static void KonsolaWypisz(double dane)
+        {
+            Console.WriteLine(dane);
+        }
+
         static void Main(string[] args)
         {
+
+
             var kolejka = new KolejkaKolowa<double>();
             WprowadzanieDanych(kolejka);
 
-            kolejka.Drukuj();
+            var KonsolaWyjscie = new Drukarka<double>(KonsolaWypisz);
 
-            var elementyJakoInt = kolejka.ElementJako<double, int>();
-
-            foreach (var item in elementyJakoInt)
-            {
-                Console.WriteLine(item);
-            }
+            kolejka.Drukuj(KonsolaWypisz);
 
             PrzetwarzanieDanych(kolejka);
 
