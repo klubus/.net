@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _2_Funkcje
 {
@@ -22,12 +23,15 @@ namespace _2_Funkcje
                 new Pracownik {Id = 7, Imie="Marek", Nazwisko ="Piatek"},
             };
 
-            IEnumerator<Pracownik> enumerator = kierowcy.GetEnumerator();
+            Console.WriteLine(programisci.Count());
+            Console.WriteLine(kierowcy.Count());
 
-            while (enumerator.MoveNext())
-            {
-                Console.WriteLine(enumerator.Current.Imie);
-            }
+            //IEnumerator<Pracownik> enumerator = kierowcy.GetEnumerator();
+
+            //while (enumerator.MoveNext())
+            //{
+            //    Console.WriteLine(enumerator.Current.Imie);
+            //}
 
             Console.ReadKey();
         }
