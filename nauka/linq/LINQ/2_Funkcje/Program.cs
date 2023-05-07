@@ -23,17 +23,31 @@ namespace _2_Funkcje
                 new Pracownik {Id = 7, Imie="Marek", Nazwisko ="Piatek"},
             };
 
-            Console.WriteLine(programisci.Count());
-            Console.WriteLine(kierowcy.Count());
+            //ExtensionMethods(programisci, kierowcy);
+            //IEnumerable(kierowcy);
 
-            //IEnumerator<Pracownik> enumerator = kierowcy.GetEnumerator();
-
-            //while (enumerator.MoveNext())
-            //{
-            //    Console.WriteLine(enumerator.Current.Imie);
-            //}
+            foreach (var osoba in programisci.Where(p => p.Imie.StartsWith("M")))
+            {
+                Console.WriteLine(osoba.Imie);
+            }
 
             Console.ReadKey();
+        }
+
+        private static void ExtensionMethods(IEnumerable<Pracownik> programisci, IEnumerable<Pracownik> kierowcy)
+        {
+            Console.WriteLine(programisci.Count());
+            Console.WriteLine(kierowcy.Count());
+        }
+
+        private static void IEnumerable(IEnumerable<Pracownik> kierowcy)
+        {
+            IEnumerator<Pracownik> enumerator = kierowcy.GetEnumerator();
+
+            while (enumerator.MoveNext())
+            {
+                Console.WriteLine(enumerator.Current.Imie);
+            }
         }
     }
 }
