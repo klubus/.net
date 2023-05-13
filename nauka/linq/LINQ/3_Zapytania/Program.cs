@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace _3_Zapytania
 {
@@ -17,6 +18,15 @@ namespace _3_Zapytania
                 new Film { Tytul = "Piękny umysł", Gatunek = "Dramat", Ocena = 8.3f, Rok = 2001},
                 new Film { Tytul = "Gladiator", Gatunek = "Dramat", Ocena = 8.1f, Rok = 2000}
             };
+
+            var zapytanie = filmy.Filtr(f => f.Rok > 2002);
+
+            foreach (var film in zapytanie)
+            {
+                Console.WriteLine(film.Tytul);
+            }
+
+            Console.ReadKey();
         }
     }
 }
