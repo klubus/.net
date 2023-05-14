@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace _3_Zapytania
 {
@@ -21,9 +22,14 @@ namespace _3_Zapytania
 
             var zapytanie = filmy.Filtr(f => f.Rok > 2002);
 
-            foreach (var film in zapytanie)
+            //pozniej
+            zapytanie = zapytanie.Take(1);
+
+            var enumerator = zapytanie.GetEnumerator();
+
+            while (enumerator.MoveNext())
             {
-                Console.WriteLine(film.Tytul);
+                Console.WriteLine(enumerator.Current.Tytul);
             }
 
             Console.ReadKey();
