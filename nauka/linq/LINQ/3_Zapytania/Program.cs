@@ -8,6 +8,15 @@ namespace _3_Zapytania
     {
         static void Main(string[] args)
         {
+            var liczby = NaszLinq.LiczbyLosowe().Where(l => l > 0.5).Take(10);
+
+            foreach (var liczba in liczby)
+            {
+                Console.WriteLine(liczba);
+            }
+
+
+
             var filmy = new List<Film>
             {
                 new Film { Tytul = "Siedem", Gatunek = "Thriller", Ocena = 8.3f, Rok = 1995},
