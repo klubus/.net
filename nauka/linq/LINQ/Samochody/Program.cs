@@ -21,6 +21,16 @@ namespace Samochody
                              orderby samochod.SpalanieAutostrada descending, samochod.Producent ascending
                              select samochod;
 
+            var zapytanie3 = samochody.Any(s => s.Producent == "BMW");
+            var zapytanie4 = samochody.All(s => s.Producent == "BMW");
+            var zapytanie5 = samochody.Contains(samochody[4]);
+            var zapytanie6 = samochody.Contains<Samochod>(samochody[4]);
+
+            Console.WriteLine(zapytanie3);
+            Console.WriteLine(zapytanie4);
+            Console.WriteLine(zapytanie5);
+            Console.WriteLine(zapytanie6);
+
             if (zapytanie != null)
             {
                 Console.WriteLine(zapytanie.Producent + " " + zapytanie.Model);
