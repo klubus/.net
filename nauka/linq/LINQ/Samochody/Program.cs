@@ -11,9 +11,16 @@ namespace Samochody
         {
             var samochody = wczytywaniePliku2("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/paliwo.csv");
 
-            foreach (var item in samochody)
+            var zapytanie = samochody.OrderByDescending(s => s.SpalanieAutostrada).ThenBy(s => s.Producent);
+
+            var zapytanie2 = from samochod in samochody
+                             orderby samochod.SpalanieAutostrada descending, samochod.Producent ascending
+                             select samochod;
+
+
+            foreach (var item in zapytanie2.Take(10))
             {
-                Console.WriteLine(item.Producent + " " + item.Model);
+                Console.WriteLine(item.Producent + " " + item.Model + " " + item.SpalanieAutostrada);
             }
             Console.ReadLine();
         }
