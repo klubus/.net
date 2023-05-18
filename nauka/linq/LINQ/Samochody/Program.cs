@@ -19,7 +19,12 @@ namespace Samochody
             var zapytanie2 = from samochod in samochody
                              where samochod.Producent == "Audi" && samochod.Rok == 2018
                              orderby samochod.SpalanieAutostrada descending, samochod.Producent ascending
-                             select samochod;
+                             select new
+                             {
+                                 samochod.Producent,
+                                 samochod.Model,
+                                 samochod.SpalanieAutostrada
+                             };
 
             var zapytanie3 = samochody.Any(s => s.Producent == "BMW");
             var zapytanie4 = samochody.All(s => s.Producent == "BMW");
@@ -45,19 +50,43 @@ namespace Samochody
 
         private static List<Samochod> wczytywaniePliku2(string sciezka)
         {
-            var zapytanie = (from linia in File.ReadAllLines(sciezka).Skip(1)
-                             where linia.Length > 1
-                             select Samochod.ParsujCSV(linia));
+            var zapytanie = File.ReadAllLines(sciezka)
+                                .Skip(1)
+                                .Where(l => l.Length > 1)
+                                .WSamochod();
+
             return zapytanie.ToList();
         }
 
-        private static List<Samochod> wczytywaniePliku(string sciezka)
-        {
-            return File.ReadAllLines(sciezka)
-                       .Skip(1)
-                       .Where(linia => linia.Length > 1)
-                       .Select(Samochod.ParsujCSV).ToList();
-        }
+        //private static List<Samochod> wczytywaniePliku(string sciezka)
+        //{
+        //    return File.ReadAllLines(sciezka)
+        //               .Skip(1)
+        //               .Where(linia => linia.Length > 1)
+        //               .Select(Samochod.ParsujCSV).ToList();
+        //}
 
+    }
+
+    public static class SamochodRozszerzenie
+    {
+        public static IEnumerable<Samochod> WSamochod(this IEnumerable<string> zrodlo)
+        {
+            foreach (var linia in zrodlo)
+            {
+                var kolumny = linia.Split(',');
+                yield return new Samochod
+                {
+                    Rok = int.Parse(kolumny[0]),
+                    Producent = kolumny[1],
+                    Model = kolumny[2],
+                    //Pojemnosc = double.Parse(kolumny[3]),
+                    IloscCylindrow = int.Parse(kolumny[4]),
+                    SpalanieMiasto = int.Parse(kolumny[5]),
+                    SpalanieAutostrada = int.Parse(kolumny[6]),
+                    SpalanieMieszane = int.Parse(kolumny[7]),
+                };
+            }
+        }
     }
 }
