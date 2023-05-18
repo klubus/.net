@@ -30,11 +30,16 @@ namespace Samochody
             var zapytanie4 = samochody.All(s => s.Producent == "BMW");
             var zapytanie5 = samochody.Contains(samochody[4]);
             var zapytanie6 = samochody.Contains<Samochod>(samochody[4]);
+            var zapytanie7 = samochody.SelectMany(s => s.Producent).OrderBy(s => s);
 
             Console.WriteLine(zapytanie3);
             Console.WriteLine(zapytanie4);
             Console.WriteLine(zapytanie5);
             Console.WriteLine(zapytanie6);
+            foreach (var litera in zapytanie7)
+            {
+                Console.WriteLine(litera);
+            }
 
             if (zapytanie != null)
             {
