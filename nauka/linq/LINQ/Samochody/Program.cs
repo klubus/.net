@@ -9,51 +9,28 @@ namespace Samochody
     {
         static void Main(string[] args)
         {
-            var samochody = wczytywaniePliku2("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/paliwo.csv");
+            var samochody = WczytywanieSamochodu("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/paliwo.csv");
+            var producenci = WczytywanieProducenci("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/producent.csv");
 
-            var zapytanie = samochody.OrderByDescending(s => s.SpalanieAutostrada)
-                                     .ThenBy(s => s.Producent)
-                                     .Select(s => s)
-                                     .FirstOrDefault(s => s.Producent == "ccc" && s.Rok == 2018);
+            var zapytanie = from samochod in samochody
+                            where samochod.Producent == "Audi" && samochod.Rok == 2018
+                            orderby samochod.SpalanieAutostrada descending, samochod.Producent ascending
+                            select new
+                            {
+                                samochod.Producent,
+                                samochod.Model,
+                                samochod.SpalanieAutostrada
+                            };
 
-            var zapytanie2 = from samochod in samochody
-                             where samochod.Producent == "Audi" && samochod.Rok == 2018
-                             orderby samochod.SpalanieAutostrada descending, samochod.Producent ascending
-                             select new
-                             {
-                                 samochod.Producent,
-                                 samochod.Model,
-                                 samochod.SpalanieAutostrada
-                             };
 
-            var zapytanie3 = samochody.Any(s => s.Producent == "BMW");
-            var zapytanie4 = samochody.All(s => s.Producent == "BMW");
-            var zapytanie5 = samochody.Contains(samochody[4]);
-            var zapytanie6 = samochody.Contains<Samochod>(samochody[4]);
-            var zapytanie7 = samochody.SelectMany(s => s.Producent).OrderBy(s => s);
-
-            Console.WriteLine(zapytanie3);
-            Console.WriteLine(zapytanie4);
-            Console.WriteLine(zapytanie5);
-            Console.WriteLine(zapytanie6);
-            foreach (var litera in zapytanie7)
+            foreach (var samochod in zapytanie.Take(10))
             {
-                Console.WriteLine(litera);
-            }
-
-            if (zapytanie != null)
-            {
-                Console.WriteLine(zapytanie.Producent + " " + zapytanie.Model);
-            }
-
-            foreach (var item in zapytanie2.Take(10))
-            {
-                Console.WriteLine(item.Producent + " " + item.Model + " " + item.SpalanieAutostrada);
+                Console.WriteLine(samochod.Producent + " " + samochod.Model + " " + samochod.SpalanieAutostrada);
             }
             Console.ReadLine();
         }
 
-        private static List<Samochod> wczytywaniePliku2(string sciezka)
+        private static List<Samochod> WczytywanieSamochodu(string sciezka)
         {
             var zapytanie = File.ReadAllLines(sciezka)
                                 .Skip(1)
@@ -63,13 +40,24 @@ namespace Samochody
             return zapytanie.ToList();
         }
 
-        //private static List<Samochod> wczytywaniePliku(string sciezka)
-        //{
-        //    return File.ReadAllLines(sciezka)
-        //               .Skip(1)
-        //               .Where(linia => linia.Length > 1)
-        //               .Select(Samochod.ParsujCSV).ToList();
-        //}
+        private static List<Producent> WczytywanieProducenci(string sciezka)
+        {
+            var zapytanie = File.ReadAllLines(sciezka)
+                                .Skip(1)
+                                .Where(l => l.Length > 1)
+                                .Select(l =>
+                                {
+                                    var kolumny = l.Split(',');
+                                    return new Producent
+                                    {
+                                        Nazwa = kolumny[0],
+                                        Siedziba = kolumny[1],
+                                        Rok = int.Parse(kolumny[2])
+                                    };
+                                });
+
+            return zapytanie.ToList();
+        }
 
     }
 
