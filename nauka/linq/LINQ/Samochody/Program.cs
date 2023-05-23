@@ -13,19 +13,20 @@ namespace Samochody
             var producenci = WczytywanieProducenci("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/producent.csv");
 
             var zapytanie = from samochod in samochody
-                            where samochod.Producent == "Audi" && samochod.Rok == 2018
+                            join producent in producenci on samochod.Producent equals producent.Nazwa
                             orderby samochod.SpalanieAutostrada descending, samochod.Producent ascending
                             select new
                             {
                                 samochod.Producent,
                                 samochod.Model,
+                                producent.Siedziba,
                                 samochod.SpalanieAutostrada
                             };
 
 
             foreach (var samochod in zapytanie.Take(10))
             {
-                Console.WriteLine(samochod.Producent + " " + samochod.Model + " " + samochod.SpalanieAutostrada);
+                Console.WriteLine(samochod.Siedziba + " " + samochod.Producent + " " + samochod.Model + " " + samochod.SpalanieAutostrada);
             }
             Console.ReadLine();
         }
