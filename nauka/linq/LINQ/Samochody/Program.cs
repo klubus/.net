@@ -13,7 +13,8 @@ namespace Samochody
             var producenci = WczytywanieProducenci("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/producent.csv");
 
             var zapytanie = from samochod in samochody
-                            join producent in producenci on samochod.Producent equals producent.Nazwa
+                            join producent in producenci on new { samochod.Producent, samochod.Rok }
+                            equals new { Producent = producent.Nazwa, producent.Rok }
                             orderby samochod.SpalanieAutostrada descending, samochod.Producent ascending
                             select new
                             {
@@ -24,8 +25,8 @@ namespace Samochody
                             };
 
             var zapytanie2 = samochody.Join(producenci,
-                                            s => s.Producent,
-                                            p => p.Nazwa,
+                                            s => new { s.Producent, s.Rok },
+                                            p => new { Producent = p.Nazwa, p.Rok },
                                             (s, p) => new
                                             {
                                                 s.Producent,
