@@ -23,8 +23,19 @@ namespace Samochody
                                 samochod.SpalanieAutostrada
                             };
 
+            var zapytanie2 = samochody.Join(producenci,
+                                            s => s.Producent,
+                                            p => p.Nazwa,
+                                            (s, p) => new
+                                            {
+                                                s.Producent,
+                                                s.SpalanieAutostrada,
+                                                s.Model,
+                                                p.Siedziba,
+                                            }).OrderByDescending(s => s.SpalanieAutostrada)
+                                            .ThenBy(s => s.Producent);
 
-            foreach (var samochod in zapytanie.Take(10))
+            foreach (var samochod in zapytanie2.Take(10))
             {
                 Console.WriteLine(samochod.Siedziba + " " + samochod.Producent + " " + samochod.Model + " " + samochod.SpalanieAutostrada);
             }
