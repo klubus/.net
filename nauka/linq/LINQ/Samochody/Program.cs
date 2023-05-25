@@ -20,20 +20,25 @@ namespace Samochody
                             {
                                 Producent = producent,
                                 Samochody = samochodGrupa
-                            };
+                            } into wynik
+                            group wynik by wynik.Producent.Siedziba;
 
             var zapytanie2 = producenci.GroupJoin(samochody, p => p.Nazwa, s => s.Producent,
-                                                 (p, g) =>
-                                                        new
-                                                        {
-                                                            Producent = p,
-                                                            Samochody = g
-                                                        }).OrderBy(p => p.Producent.Nazwa);
+                                        (p, g) =>
+                                                new
+                                                {
+                                                    Producent = p,
+                                                    Samochody = g
+                                                }).OrderBy(g => g.Producent.Siedziba)
+                                                .GroupBy(g => g.Producent.Siedziba);
 
             foreach (var grupa in zapytanie2)
             {
-                Console.WriteLine($"{grupa.Producent.Nazwa} : { grupa.Producent.Siedziba}");
-                foreach (var samochod in grupa.Samochody.OrderByDescending(s => s.SpalanieAutostrada).Take(2))
+                Console.WriteLine($"{grupa.Key}");
+
+                foreach (var samochod in grupa.SelectMany(g => g.Samochody)
+                                              .OrderByDescending(s => s.SpalanieAutostrada)
+                                              .Take(3))
                 {
                     Console.WriteLine($"\t {samochod.Model} : {samochod.SpalanieAutostrada}");
                 }
