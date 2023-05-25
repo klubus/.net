@@ -13,32 +13,18 @@ namespace Samochody
             var producenci = WczytywanieProducenci("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/producent.csv");
 
             var zapytanie = from samochod in samochody
-                            join producent in producenci on new { samochod.Producent, samochod.Rok }
-                            equals new { Producent = producent.Nazwa, producent.Rok }
-                            orderby samochod.SpalanieAutostrada descending, samochod.Producent ascending
-                            select new
-                            {
-                                samochod.Producent,
-                                samochod.Model,
-                                producent.Siedziba,
-                                samochod.SpalanieAutostrada
-                            };
+                            group samochod by samochod.Producent.ToUpper() into producent
+                            orderby producent.Key
+                            select producent;
 
-            var zapytanie2 = samochody.Join(producenci,
-                                            s => new { s.Producent, s.Rok },
-                                            p => new { Producent = p.Nazwa, p.Rok },
-                                            (s, p) => new
-                                            {
-                                                s.Producent,
-                                                s.SpalanieAutostrada,
-                                                s.Model,
-                                                p.Siedziba,
-                                            }).OrderByDescending(s => s.SpalanieAutostrada)
-                                            .ThenBy(s => s.Producent);
 
-            foreach (var samochod in zapytanie2.Take(10))
+            foreach (var grupa in zapytanie)
             {
-                Console.WriteLine(samochod.Siedziba + " " + samochod.Producent + " " + samochod.Model + " " + samochod.SpalanieAutostrada);
+                Console.WriteLine(grupa.Key);
+                foreach (var samochod in grupa.OrderByDescending(s => s.SpalanieAutostrada).Take(2))
+                {
+                    Console.WriteLine($"\t {samochod.Model} : {samochod.SpalanieAutostrada}");
+                }
             }
             Console.ReadLine();
         }
