@@ -17,8 +17,11 @@ namespace Samochody
                             orderby producent.Key
                             select producent;
 
+            var zapytanie2 = samochody.GroupBy(s => s.Producent.ToUpper())
+                                      .OrderBy(g => g.Key);
 
-            foreach (var grupa in zapytanie)
+
+            foreach (var grupa in zapytanie2)
             {
                 Console.WriteLine(grupa.Key);
                 foreach (var samochod in grupa.OrderByDescending(s => s.SpalanieAutostrada).Take(2))
