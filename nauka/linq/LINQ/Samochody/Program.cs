@@ -12,16 +12,18 @@ namespace Samochody
             var samochody = WczytywanieSamochodu("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/paliwo.csv");
             var producenci = WczytywanieProducenci("C:/Users/kluba/Pulpit/dotnet/.net/nauka/linq/LINQ/Samochody/producent.csv");
 
-            var zapytanie = from producent in producenci
-                            join samochod in samochody
-                            on producent.Nazwa equals samochod.Producent into samochodGrupa
-                            orderby producent.Nazwa
+            var zapytanie = from samochod in samochody
+                            group samochod by samochod.Producent into samochodGrupa
                             select new
                             {
-                                Producent = producent,
-                                Samochody = samochodGrupa
+                                Nazwa = samochodGrupa.Key,
+                                Min = samochodGrupa.Min(s => s.SpalanieAutostrada),
+                                Max = samochodGrupa.Max(s => s.SpalanieAutostrada),
+                                Sre = samochodGrupa.Average(s => s.SpalanieAutostrada),
                             } into wynik
-                            group wynik by wynik.Producent.Siedziba;
+                            orderby wynik.Max descending
+                            select wynik;
+
 
             var zapytanie2 = producenci.GroupJoin(samochody, p => p.Nazwa, s => s.Producent,
                                         (p, g) =>
@@ -32,16 +34,13 @@ namespace Samochody
                                                 }).OrderBy(g => g.Producent.Siedziba)
                                                 .GroupBy(g => g.Producent.Siedziba);
 
-            foreach (var grupa in zapytanie2)
+            foreach (var wynik in zapytanie)
             {
-                Console.WriteLine($"{grupa.Key}");
+                Console.WriteLine($"{wynik.Nazwa}");
+                Console.WriteLine($"\t Min: {wynik.Min}");
+                Console.WriteLine($"\t Max: {wynik.Max}");
+                Console.WriteLine($"\t Śre: {wynik.Sre}");
 
-                foreach (var samochod in grupa.SelectMany(g => g.Samochody)
-                                              .OrderByDescending(s => s.SpalanieAutostrada)
-                                              .Take(3))
-                {
-                    Console.WriteLine($"\t {samochod.Model} : {samochod.SpalanieAutostrada}");
-                }
             }
             Console.ReadLine();
         }
