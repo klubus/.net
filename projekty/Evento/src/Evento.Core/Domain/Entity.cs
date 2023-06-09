@@ -1,11 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public abstract class Entity
+namespace Evento.Core.Domain
 {
-    public Guid Id { get; protected set; }
-
-    protected Entity()
+    public class Entity
     {
-        Id = Guid.NewGuid();
+        public Guid Id { get; protected set; }
+
+        protected Entity()
+        {
+            Id = Guid.NewGuid();
+        }
+
     }
 }

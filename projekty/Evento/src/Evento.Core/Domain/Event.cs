@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace Evento.Core.Domain
 {
     public class Event : Entity
     {
-        private ISet<Ticket> _tickets = new HashSet<Ticket>(); 
+        private ISet<Ticket> _tickets = new HashSet<Ticket>();
         public string Name { get; protected set; }
         public string Description { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
