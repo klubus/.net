@@ -1,4 +1,5 @@
-﻿using Evento.Infrastructure.Services;
+﻿using Evento.Infrastructure.Commands.Events;
+using Evento.Infrastructure.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,17 @@ namespace Evento.Api.Controllers
         {
             var events = _eventService.BrowseAsync(name);
             return Json(events);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]CreateEvent command)
+        {
+            var eventId = Guid.NewGuid();
+
+            await _eventService.CreateAsync(eventId, command.Name, command.Description, command.StartDate,
+                                            command.EndDate);
+
+            return Created($"/events/{command.EventId}", null);
         }
     }
 }
