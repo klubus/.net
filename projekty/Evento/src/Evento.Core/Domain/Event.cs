@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Evento.Core.Domain
 {
@@ -26,13 +27,34 @@ namespace Evento.Core.Domain
         public Event(Guid id, string name, string description, DateTime startDate, DateTime endDate)
         {
             Id = id;
-            Name = name;
-            Description = description;
+            setName(name);
+            setDescription(description);
             CreatedAt = DateTime.UtcNow;
             StartDate = startDate;
             EndDate = endDate;
             UpdatedAt = DateTime.UtcNow;
         }
+
+        public void setName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new Exception($"Event with {Id} cannot have an empty name.");
+            }
+            Name = name;
+            UpdatedAt = DateTime.UtcNow;
+        }
+
+        public void setDescription(string description)
+        {
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                throw new Exception($"Event with {Id} cannot have an empty name.");
+            }
+            Description = description;
+            UpdatedAt = DateTime.UtcNow;
+        }
+
 
         public void AddTickets(int amount, decimal price)
         {

@@ -10,8 +10,8 @@ namespace Evento.Api.Controllers
     public class EventsController : Controller
     {
         private readonly IEventService _eventService;
-        public EventsController(IEventService eventService) 
-        { 
+        public EventsController(IEventService eventService)
+        {
             _eventService = eventService;
         }
         [HttpGet]
@@ -22,7 +22,7 @@ namespace Evento.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]CreateEvent command)
+        public async Task<IActionResult> Post([FromBody] CreateEvent command)
         {
             var eventId = Guid.NewGuid();
 
@@ -32,6 +32,15 @@ namespace Evento.Api.Controllers
             await _eventService.AddTicketAsync(eventId, command.Tickets, command.Price);
 
             return Created($"/events/{command.EventId}", null);
+        }
+
+        [HttpPut("{eventId}")]
+        public async Task<IActionResult> Put(Guid eventId, [FromBody] UpdateEvent command)
+        { 
+
+            await _eventService.UpdateAsync(eventId, command.Name, command.Description);
+
+            return NoContent();
         }
     }
 }
