@@ -2,6 +2,7 @@
 using Evento.Core.Domain;
 using Evento.Core.Repositories;
 using Evento.Infrastructure.DTO;
+using Evento.Infrastructure.Extensions;
 using Evento.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -45,13 +46,7 @@ namespace Evento.Infrastructure.Services
 
         public async Task AddTicketAsync(Guid id, int amount, decimal price)
         {
-            var @event = await _eventRepository.GetAsync(id);
-
-            if (@event == null)
-            {
-                throw new Exception($"Event with id: {id} does not exists.");
-            }
-
+            var @event = await _eventRepository.GetOrFailAsync(id);
             @event.AddTickets(amount, price);
             await _eventRepository.UpdateAsync(@event);
 
@@ -72,11 +67,7 @@ namespace Evento.Infrastructure.Services
 
         public async Task UpdateAsync(Guid id, string name, string description)
         {
-            var @event = await _eventRepository.GetAsync(id);
-            if (@event == null)
-            {
-                throw new Exception($"Event with id: {id} does not exists.");
-            }
+            var @event = await _eventRepository.GetOrFailAsync(id);
 
             @event = await _eventRepository.GetAsync(name);
             if (@event != null)
