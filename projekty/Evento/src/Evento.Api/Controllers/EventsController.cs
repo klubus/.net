@@ -29,6 +29,8 @@ namespace Evento.Api.Controllers
             await _eventService.CreateAsync(eventId, command.Name, command.Description, command.StartDate,
                                             command.EndDate);
 
+            await _eventService.AddTicketAsync(eventId, command.Tickets, command.Price);
+
             return Created($"/events/{command.EventId}", null);
         }
     }

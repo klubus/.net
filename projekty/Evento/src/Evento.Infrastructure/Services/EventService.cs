@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Evento.Infrastructure.Services
 {
@@ -42,9 +43,18 @@ namespace Evento.Infrastructure.Services
             return _mapper.Map<IEnumerable<EventDto>>(events);
         }
 
-        public async Task AddTicketAsync(Guid id, string name, decimal price)
+        public async Task AddTicketAsync(Guid id, int amount, decimal price)
         {
-            throw new NotImplementedException();
+            var @event = await _eventRepository.GetAsync(id);
+
+            if (@event == null)
+            {
+                throw new Exception($"Event with id: {id} does not exists.");
+            }
+
+            @event.AddTickets(amount, price);
+            await _eventRepository.UpdateAsync(@event);
+
         }
 
         public async Task CreateAsync(Guid id, string name, string description, DateTime startDate, DateTime endDate)
