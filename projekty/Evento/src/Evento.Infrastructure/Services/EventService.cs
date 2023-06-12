@@ -69,12 +69,12 @@ namespace Evento.Infrastructure.Services
         {
             var @event = await _eventRepository.GetOrFailAsync(id);
 
-            @event = await _eventRepository.GetAsync(name);
             if (@event != null)
             {
                 throw new Exception($"Event named: {name} already exists.");
             }
 
+            @event = await _eventRepository.GetAsync(name);
             @event.setName(name);
             @event.setDescription(description);
             await _eventRepository.UpdateAsync(@event);
