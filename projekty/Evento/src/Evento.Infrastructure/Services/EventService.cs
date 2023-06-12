@@ -24,18 +24,18 @@ namespace Evento.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public async Task<EventDto> GetAsync(Guid id)
+        public async Task<EventDetailsDto> GetAsync(Guid id)
         {
             var @event = await _eventRepository.GetAsync(id);
 
-            return _mapper.Map<EventDto>(@event);
+            return _mapper.Map<EventDetailsDto>(@event);
         }
 
-        public async Task<EventDto> GetAsync(string name)
+        public async Task<EventDetailsDto> GetAsync(string name)
         {
             var @event = await _eventRepository.GetAsync(name);
 
-            return _mapper.Map<EventDto>(@event);
+            return _mapper.Map<EventDetailsDto>(@event);
         }
         public async Task<IEnumerable<EventDto>> BrowseAsync(string name = null)
         {

@@ -18,6 +18,8 @@ namespace Evento.Core.Domain
         public DateTime EndDate { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
         public IEnumerable<Ticket> Tickets => _tickets;
+        public IEnumerable<Ticket> PurchasedTickets => Tickets.Where(x => x.Purchased);
+        public IEnumerable<Ticket> AvailableTickets => Tickets.Except(PurchasedTickets);
 
         protected Event()
         {
