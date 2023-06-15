@@ -1,4 +1,5 @@
 ﻿using Evento.Infrastructure.DTO;
+using Evento.Infrastructure.Extensions;
 using Evento.Infrastructure.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -24,7 +25,7 @@ namespace Evento.Infrastructure.Services
                 new Claim(JwtRegisteredClaimNames.UniqueName, userId.ToString()),
                 new Claim(ClaimTypes.Role, role),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Iat, now.Ticks.ToString()),
+                new Claim(JwtRegisteredClaimNames.Iat, now.ToTimestamp().ToString()),
             };
 
             var expires = now.AddMinutes(_jwtSettings.ExpiryMinutes);
@@ -45,7 +46,7 @@ namespace Evento.Infrastructure.Services
             return new JwtDto
             {
                 Token = token,
-                Expires = expires.Ticks
+                Expires = expires.ToTimestamp();
             };
         }
     }
