@@ -26,14 +26,14 @@ namespace Evento.Api.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Post(Register command)
+        public async Task<IActionResult> Post([FromBody] Register command)
         {
             await _userService.RegisterAsync(command.Id, command.Email, command.Name, command.Password, command.Role);
             return Created("/account", null);
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Post(Login command)
+        public async Task<IActionResult> Post([FromBody] Login command)
          => Json(await _userService.LoginAsync(command.Email, command.Password));
     }
 }
