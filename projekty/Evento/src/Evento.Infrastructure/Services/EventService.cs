@@ -75,8 +75,8 @@ namespace Evento.Infrastructure.Services
             }
 
             @event = await _eventRepository.GetAsync(name);
-            @event.setName(name);
-            @event.setDescription(description);
+            @event.SetName(name);
+            @event.SetDescription(description);
             await _eventRepository.UpdateAsync(@event);
         }
 

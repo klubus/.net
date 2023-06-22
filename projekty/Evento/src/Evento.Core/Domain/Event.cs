@@ -29,15 +29,24 @@ namespace Evento.Core.Domain
         public Event(Guid id, string name, string description, DateTime startDate, DateTime endDate)
         {
             Id = id;
-            setName(name);
-            setDescription(description);
-            CreatedAt = DateTime.UtcNow;
-            StartDate = startDate;
+            SetName(name);
+            SetDescription(description);
+            SetDates(startDate, endDate);
             EndDate = endDate;
             UpdatedAt = DateTime.UtcNow;
         }
 
-        public void setName(string name)
+        public void SetDates(DateTime startDate, DateTime endDate)
+        {
+            if (startDate >= endDate)
+            {
+                throw new Exception($"Event with id: {Id} must have a end date greater than start date.");
+            }
+            StartDate = startDate;
+            EndDate = endDate;
+        }
+
+        public void SetName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -47,7 +56,7 @@ namespace Evento.Core.Domain
             UpdatedAt = DateTime.UtcNow;
         }
 
-        public void setDescription(string description)
+        public void SetDescription(string description)
         {
             if (string.IsNullOrWhiteSpace(description))
             {
