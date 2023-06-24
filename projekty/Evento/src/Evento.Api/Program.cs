@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddMemoryCache();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization(x => x.AddPolicy("HasAdminRole", p => p.RequireRole("admin")));
@@ -25,6 +26,7 @@ builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddSingleton<IJwtHandler, JwtHandler>();
 builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("jwt"));
+
 
 
 
