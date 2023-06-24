@@ -5,6 +5,7 @@ using Evento.Infrastructure.Services;
 using Evento.Infrastructure.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -23,9 +24,11 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<IDataInitializer, DataInitializer>();
 builder.Services.AddSingleton<IJwtHandler, JwtHandler>();
 builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("jwt"));
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("app"));
 
 
 
@@ -55,7 +58,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-
 
 app.Run();
