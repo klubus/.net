@@ -1,11 +1,6 @@
 ﻿using Evento.Core.Domain;
 using Evento.Core.Repositories;
 using Evento.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Evento.Tests.Repositories
 {
