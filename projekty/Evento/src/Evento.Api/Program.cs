@@ -1,3 +1,4 @@
+using Evento.Api.Framework;
 using Evento.Core.Repositories;
 using Evento.Infrastructure.Mappers;
 using Evento.Infrastructure.Repositories;
@@ -51,7 +52,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseErrorHandler();
 
 app.UseHttpsRedirection();
 
