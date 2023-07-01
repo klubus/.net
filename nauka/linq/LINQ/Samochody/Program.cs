@@ -6,14 +6,12 @@ using System.Xml.Linq;
 
 namespace Samochody
 {
-    public class Program
+    class Program
     {
         static void Main(string[] args)
         {
             TworzenieXML();
             ZapytanieXML();
-
-            Console.ReadLine();
         }
 
         private static void ZapytanieXML()
@@ -27,18 +25,18 @@ namespace Samochody
                             select new
                             {
                                 model = element.Attribute("Model").Value,
-                                producent = element.Attribute("Producent").Value;
+                                producent = element.Attribute("Producent").Value
                             };
 
             foreach (var samochod in zapytanie)
-	        {
+            {
                 Console.WriteLine(samochod.producent + " " + samochod.model);
-	        }
+            }
+
         }
 
         private static void TworzenieXML()
         {
-    
             XNamespace ns = "http://dev-hobby.pl/Samochody/2018";
             XNamespace ex = "http://dev-hobby.pl/Samochody/2018/ex";
 
@@ -46,12 +44,16 @@ namespace Samochody
 
             var dokument = new XDocument();
             var samochody = new XElement(ns + "Samochody", from rekord in rekordy
-                                                      select new XElement(ex + "Samochod"),
-                                                                            new XAttribute("Producent"), rekord.Producent),
-                                                                            new XAttribute("Model"), rekord.Model),
-                                                                            new XAttribute("SpalanieAutostrada"), rekord.SpalanieAutostrada),
-                                                                            new XAttribute("SpalanieMiasto"), rekord.SpalanieMiasto),
-                                                                            new XAttribute("SpalanieMieszane"), rekord.SpalanieMieszane)));
+                                                           select new XElement(ex + "Samochod",
+                                                                                new XAttribute("Rok", rekord.Rok),
+                                                                                new XAttribute("Producent", rekord.Producent),
+                                                                                new XAttribute("Model", rekord.Model),
+                                                                                new XAttribute("SpalanieAutostrada", rekord.SpalanieAutostrada),
+                                                                                new XAttribute("SpalanieMiasto", rekord.SpalanieMiasto),
+                                                                                new XAttribute("SpalanieMieszane", rekord.SpalanieMieszane)));
+
+            samochody.Add(new XAttribute(XNamespace.Xmlns + "ex", ex));
+
             dokument.Add(samochody);
             dokument.Save("paliwo.xml");
         }
@@ -66,10 +68,10 @@ namespace Samochody
             return zapytanie.ToList();
         }
 
+
         private static List<Producent> WczytywanieProducenci(string sciezka)
         {
             var zapytanie = File.ReadAllLines(sciezka)
-                                .Skip(1)
                                 .Where(l => l.Length > 1)
                                 .Select(l =>
                                 {
@@ -84,7 +86,6 @@ namespace Samochody
 
             return zapytanie.ToList();
         }
-
     }
 
     public static class SamochodRozszerzenie
@@ -94,16 +95,17 @@ namespace Samochody
             foreach (var linia in zrodlo)
             {
                 var kolumny = linia.Split(',');
+
                 yield return new Samochod
                 {
                     Rok = int.Parse(kolumny[0]),
                     Producent = kolumny[1],
                     Model = kolumny[2],
-                    //Pojemnosc = double.Parse(kolumny[3]),
+                    Pojemnosc = double.Parse(kolumny[3]),
                     IloscCylindrow = int.Parse(kolumny[4]),
                     SpalanieMiasto = int.Parse(kolumny[5]),
                     SpalanieAutostrada = int.Parse(kolumny[6]),
-                    SpalanieMieszane = int.Parse(kolumny[7]),
+                    SpalanieMieszane = int.Parse(kolumny[7])
                 };
             }
         }

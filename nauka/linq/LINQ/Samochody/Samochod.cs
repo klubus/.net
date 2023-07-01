@@ -2,6 +2,7 @@
 {
     public class Samochod
     {
+        public int Id { get; set; }
         public int Rok { get; set; }
         public string Producent { get; set; }
         public string Model { get; set; }
