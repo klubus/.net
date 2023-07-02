@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -10,8 +11,42 @@ namespace Samochody
     {
         static void Main(string[] args)
         {
-            TworzenieXML();
-            ZapytanieXML();
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SamochodDB>());
+            WstawDane();
+            ZapytanieDane();
+            Console.ReadKey();
+        }
+
+        private static void WstawDane()
+        {
+            var samochody = WczytywanieSamochodu("../../paliwo.csv");
+            var db = new SamochodDB();
+            db.Database.Log = Console.WriteLine;
+            if (!db.Samochody.Any())
+            {
+                foreach (var samochod in samochody)
+                {
+                    db.Samochody.Add(samochod);
+                }
+                db.SaveChanges();
+            }
+        }
+
+        private static void ZapytanieDane()
+        {
+            var db = new SamochodDB();
+            db.Database.Log = Console.WriteLine;
+            var zapytanie = from samochod in db.Samochody
+                            orderby samochod.SpalanieAutostrada descending, samochod.Model ascending
+                            select samochod;
+
+            var zapytanie2 = db.Samochody.OrderByDescending(x => x.SpalanieAutostrada).ThenBy(x => x.Model);
+
+            foreach (var samochod in zapytanie2.Take(10))
+            {
+                Console.WriteLine($"{samochod.Model} : {samochod.SpalanieAutostrada}");
+            }
+
         }
 
         private static void ZapytanieXML()
@@ -101,7 +136,7 @@ namespace Samochody
                     Rok = int.Parse(kolumny[0]),
                     Producent = kolumny[1],
                     Model = kolumny[2],
-                    Pojemnosc = double.Parse(kolumny[3]),
+                    Pojemnosc = kolumny[3],
                     IloscCylindrow = int.Parse(kolumny[4]),
                     SpalanieMiasto = int.Parse(kolumny[5]),
                     SpalanieAutostrada = int.Parse(kolumny[6]),
