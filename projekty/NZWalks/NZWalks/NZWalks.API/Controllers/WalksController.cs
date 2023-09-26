@@ -37,6 +37,11 @@ namespace NZWalks.API.Controllers
         {
             var walkDomain = await walkRepository.GetAsync(id);
 
+            if (walkDomain == null)
+            {
+                return NotFound();
+            }
+
             var walksDTO = mapper.Map<Models.DTO.Walk>(walkDomain);
 
             return Ok(walksDTO);
@@ -104,6 +109,29 @@ namespace NZWalks.API.Controllers
             };
 
             // Return Ok response
+            return Ok(walkDTO);
+        }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> DeleteWalkAsync(Guid id)
+        {
+            var walkDomain = await walkRepository.DeleteAsync(id);
+
+            if (walkDomain == null)
+            {
+                return NotFound();
+            }
+
+            var walkDTO = new Models.DTO.Walk
+            {
+                Id = walkDomain.Id,
+                Name = walkDomain.Name,
+                Length = walkDomain.Length,
+                RegionId = walkDomain.RegionId,
+                WalkDifficultyId = walkDomain.WalkDifficultyId
+            };
+
             return Ok(walkDTO);
         }
     }
