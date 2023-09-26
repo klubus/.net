@@ -32,6 +32,7 @@ namespace NZWalks.API.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
+        [ActionName("GetWalkAsync")]
         public async Task<IActionResult> GetWalkAsync(Guid id)
         {
             var walkDomain = await walkRepository.GetAsync(id);
@@ -40,6 +41,70 @@ namespace NZWalks.API.Controllers
 
             return Ok(walksDTO);
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddWalkAsync([FromBody] Models.DTO.AddWalkRequest addWalkRequest)
+        {
+            var walkDomain = new Models.Domain.Walk()
+            {
+                Name = addWalkRequest.Name,
+                Length = addWalkRequest.Length,
+                RegionId = addWalkRequest.RegionId,
+                WalkDifficultyId = addWalkRequest.WalkDifficultyId
+            };
+
+            walkDomain = await walkRepository.AddAsync(walkDomain);
+
+            var walkDTO = new Models.DTO.Walk()
+            {
+                Id = walkDomain.Id,
+                Name = walkDomain.Name,
+                Length = walkDomain.Length,
+                RegionId = walkDomain.RegionId,
+                WalkDifficultyId = walkDomain.WalkDifficultyId
+            };
+
+            return CreatedAtAction(nameof(GetWalkAsync), new { id = walkDTO.Id }, walkDTO);
+
+        }
+
+        [HttpPut]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> UpdateWalksAsync([FromRoute] Guid id, [FromBody] Models.DTO.UpdateWalkRequest updateWalkRequest)
+        {
+            // Convert DTO to Domain model
+            var walkDomain = new Models.Domain.Walk
+            {
+                Name = updateWalkRequest.Name,
+                Length = updateWalkRequest.Length,
+                RegionId = updateWalkRequest.RegionId,
+                WalkDifficultyId = updateWalkRequest.WalkDifficultyId
+            };
+
+            // Update Region using repository
+
+            walkDomain = await walkRepository.UpdateAsync(id, walkDomain);
+
+            // If null then NotFound
+
+            if (walkDomain == null)
+            {
+                return NotFound();
+            }
+
+            // Convert Domain back to DTO
+
+            var walkDTO = new Models.DTO.Walk
+            {
+                Name = walkDomain.Name,
+                Length = walkDomain.Length,
+                RegionId = walkDomain.RegionId,
+                WalkDifficultyId = walkDomain.WalkDifficultyId
+            };
+
+            // Return Ok response
+            return Ok(walkDTO);
         }
     }
 }
