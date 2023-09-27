@@ -6,5 +6,6 @@ namespace NZWalks.API.Repositories
     {
         Task<IEnumerable<WalkDifficulty>> GetAllAsync();
         Task<WalkDifficulty> GetAsync(Guid id);
+        Task<WalkDifficulty> AddAsync(WalkDifficulty walkDifficulty);
     }
 }

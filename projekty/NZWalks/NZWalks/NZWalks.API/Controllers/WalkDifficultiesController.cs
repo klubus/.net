@@ -29,6 +29,7 @@ namespace NZWalks.API.Controllers
 
         [HttpGet]
         [Route("{id:guid}")]
+        [ActionName("GetWalkDifficultyById")]
         public async Task<IActionResult> GetWalkDifficultyById(Guid id)
         {
             var walkDifficulty = await walkDifficultyRepository.GetAsync(id);
@@ -40,6 +41,24 @@ namespace NZWalks.API.Controllers
 
             var walkDifficultyDTO = mapper.Map<Models.DTO.WalkDifficulty>(walkDifficulty);
             return Ok(walkDifficultyDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddWalkDifficultyAsync([FromBody] Models.DTO.AddWalkDifficultyRequest addWalkDifficultyRequest)
+        {
+            var walkDifficultyDomain = new Models.Domain.WalkDifficulty()
+            {
+                Code = addWalkDifficultyRequest.Code,
+            };
+
+            walkDifficultyDomain = await walkDifficultyRepository.AddAsync(walkDifficultyDomain);
+
+            var walkDifficultyDTO = new Models.DTO.WalkDifficulty()
+            {
+                Code = walkDifficultyDomain.Code
+            };
+
+            return CreatedAtAction(nameof(GetWalkDifficultyById), new { id = walkDifficultyDTO.Id }, walkDifficultyDTO);
         }
     }
 }
