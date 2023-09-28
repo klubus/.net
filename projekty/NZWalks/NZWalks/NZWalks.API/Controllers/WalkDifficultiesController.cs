@@ -84,5 +84,19 @@ namespace NZWalks.API.Controllers
 
             return Ok(walkDifficultyDTO);
         }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> DeleteWalkDifficultyById(Guid id)
+        {
+            var walkDifficultyDomain = await walkDifficultyRepository.DeleteAsync(id);
+
+            if (walkDifficultyDomain == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
     }
 }
