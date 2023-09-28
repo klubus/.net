@@ -60,5 +60,29 @@ namespace NZWalks.API.Controllers
 
             return CreatedAtAction(nameof(GetWalkDifficultyById), new { id = walkDifficultyDTO.Id }, walkDifficultyDTO);
         }
+
+        [HttpPut]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> UpdateWalkDifficultyAsync([FromRoute] Guid id, [FromBody] Models.DTO.UpdateWalkDifficultyRequest updateWalkDifficultyRequest)
+        {
+            var walkDifficultyDomain = new Models.Domain.WalkDifficulty
+            {
+                Code = updateWalkDifficultyRequest.Code,
+            };
+
+            walkDifficultyDomain = await walkDifficultyRepository.UpdateAsync(id, walkDifficultyDomain);
+
+            if (walkDifficultyDomain == null)
+            {
+                return NotFound();
+            }
+
+            var walkDifficultyDTO = new Models.DTO.WalkDifficulty
+            {
+                Code = walkDifficultyDomain.Code,
+            };
+
+            return Ok(walkDifficultyDTO);
+        }
     }
 }
