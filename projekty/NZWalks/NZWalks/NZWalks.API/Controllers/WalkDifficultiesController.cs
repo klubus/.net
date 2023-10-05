@@ -46,6 +46,13 @@ namespace NZWalks.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddWalkDifficultyAsync([FromBody] Models.DTO.AddWalkDifficultyRequest addWalkDifficultyRequest)
         {
+
+            if (!(ValidateAddWalkDifficultyAsync(addWalkDifficultyRequest)))
+            {
+                return BadRequest(ModelState);
+            }
+
+
             var walkDifficultyDomain = new Models.Domain.WalkDifficulty()
             {
                 Code = addWalkDifficultyRequest.Code,
@@ -65,6 +72,11 @@ namespace NZWalks.API.Controllers
         [Route("{id:guid}")]
         public async Task<IActionResult> UpdateWalkDifficultyAsync([FromRoute] Guid id, [FromBody] Models.DTO.UpdateWalkDifficultyRequest updateWalkDifficultyRequest)
         {
+            if (!(ValidateUpdateWalkDifficultyAsync(updateWalkDifficultyRequest)))
+            {
+                return BadRequest(ModelState);
+            }
+
             var walkDifficultyDomain = new Models.Domain.WalkDifficulty
             {
                 Code = updateWalkDifficultyRequest.Code,
@@ -98,5 +110,31 @@ namespace NZWalks.API.Controllers
 
             return Ok();
         }
+
+        #region Private methods
+        private bool ValidateAddWalkDifficultyAsync(Models.DTO.AddWalkDifficultyRequest addWalkDifficultyRequest)
+        {
+            if (string.IsNullOrWhiteSpace(addWalkDifficultyRequest.Code))
+            {
+                ModelState.AddModelError(nameof(addWalkDifficultyRequest.Code), $"{nameof(addWalkDifficultyRequest.Code)} is required.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidateUpdateWalkDifficultyAsync(Models.DTO.UpdateWalkDifficultyRequest updateWalkDifficultyRequest)
+        {
+            if (string.IsNullOrWhiteSpace(updateWalkDifficultyRequest.Code))
+            {
+                ModelState.AddModelError(nameof(updateWalkDifficultyRequest.Code), $"{nameof(updateWalkDifficultyRequest.Code)} is required.");
+                return false;
+            }
+
+            return true;
+        }
+
+
+        #endregion
     }
 }
