@@ -4,6 +4,6 @@ namespace NZWalks.API.Repositories
 {
     public interface IUserRepository
     {
-        Task<User> AuthenticateAsync(string userName, string password);
+        Task<User> AuthenticateAsync(string username, string password);
     }
 }
