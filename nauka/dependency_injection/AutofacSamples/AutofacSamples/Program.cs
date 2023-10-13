@@ -1,4 +1,6 @@
-﻿namespace AutofacSample
+﻿using Autofac;
+
+namespace AutofacSample
 {
     public interface ILog
     {
@@ -52,9 +54,15 @@
     {
         public static void Main(string[] args)
         {
-            var log = new ConsoleLog();
-            var engine = new Engine(log);
-            var car = new Car(engine, log);
+            var builder = new ContainerBuilder();
+            builder.RegisterType<ConsoleLog>().As<ILog>();
+            builder.RegisterType<Engine>();
+            builder.RegisterType<Car>();
+
+            var container = builder.Build();
+
+            var car = container.Resolve<Car>();
+
             car.Go();
         }
     }
