@@ -51,6 +51,11 @@ namespace AutofacSample
         private ILog log;
         private Engine engine;
 
+        public Car(Engine engine)
+        {
+            this.engine = engine;
+        }
+
         public Car(Engine engine, ILog log)
         {
             this.engine = engine;
@@ -69,12 +74,10 @@ namespace AutofacSample
         public static void Main(string[] args)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<EmailLog>()
-                .As<ILog>()
-                .As<IConsole>();
-            builder.RegisterType<ConsoleLog>().As<ILog>().PreserveExistingDefaults();
+            builder.RegisterType<ConsoleLog>().As<ILog>();
             builder.RegisterType<Engine>();
-            builder.RegisterType<Car>();
+            builder.RegisterType<Car>()
+                .UsingConstructor(typeof(Engine));
 
             IContainer container = builder.Build();
 
