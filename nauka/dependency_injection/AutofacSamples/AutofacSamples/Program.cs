@@ -81,19 +81,17 @@ namespace AutofacSample
         public static void Main(string[] args)
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<ConsoleLog>().As<ILog>();
 
-            builder.Register((IComponentContext c) =>
-                new Engine(c.Resolve<ILog>(), 123));
+            // IList<T> --> List<T>
+            // IList<int> --> List<int>
 
-            //builder.RegisterType<Engine>();
-            builder.RegisterType<Car>();
+            builder.RegisterGeneric(typeof(List<>)).As(typeof(IList<>));
 
             IContainer container = builder.Build();
 
-            var car = container.Resolve<Car>();
+            var myList = container.Resolve<IList<int>>();
 
-            car.Go();
+            Console.WriteLine(myList.GetType());
         }
     }
 }
