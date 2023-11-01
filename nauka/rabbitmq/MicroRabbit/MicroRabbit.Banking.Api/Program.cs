@@ -28,7 +28,11 @@ builder.Services.AddDbContext<BankingDbContext>(options =>
 builder.Services.AddMvcCore()
         .AddApiExplorer();
 
-builder.Services.AddTransient<IEventBus, RabbitMQBus>();
+builder.Services.AddSingleton<IEventBus, RabbitMQBus>(sp =>
+{
+    var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+    return new RabbitMQBus(sp.GetService<IMediator>(), scopeFactory);
+});
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IRequestHandler<CreateTransferCommand, bool>, TransferCommandHandler>();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
