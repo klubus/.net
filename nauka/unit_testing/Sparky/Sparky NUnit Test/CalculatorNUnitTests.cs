@@ -80,8 +80,16 @@ namespace Sparky_NUnit_Test
         {
             Calculator calc = new Calculator();
             List<int> expectedOddRange = new() { 5, 7, 9 };
+
             List<int> result = calc.GetOddRange(5, 10);
+
             Assert.That(result, Is.EquivalentTo(expectedOddRange));
+            Assert.That(result, Does.Contain(7));
+            Assert.That(result, Is.Not.Empty);
+            Assert.That(result.Count, Is.EqualTo(3));
+            Assert.That(result, Has.No.Member(6));
+            Assert.That(result, Is.Ordered);
+            Assert.That(result, Is.Unique);
         }
     }
 }
