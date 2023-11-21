@@ -1,35 +1,39 @@
-﻿//namespace Sparky
-//{
-//    [TestFixture]
-//    public class FiboXUnitTest
-//    {
-//        private Fibo fibo;
-//        [SetUp]
-//        public void SetUp()
-//        {
-//            fibo = new Fibo();
-//        }
-//        [Test]
-//        public void GetFiboSeries_Input1_ResultMultiple()
-//        {
-//            fibo.Range = 1;
-//            var result = fibo.GetFiboSeries();
+﻿using Sparky_Project;
+using Xunit;
 
-//            Assert.That(result, Is.Not.Empty);
-//            Assert.That(result, Is.Ordered);
-//            Assert.That(result, Is.EqualTo(new List<int> { 0 }));
-//        }
+namespace Sparky
+{
+    public class FiboXUnitTest
+    {
+        private Fibo fibo;
+        public FiboXUnitTest()
+        {
+            fibo = new Fibo();
+        }
 
-//        [Test]
-//        public void GetFiboSeries_Input6_ResultMultiple()
-//        {
-//            fibo.Range = 6;
-//            var result = fibo.GetFiboSeries();
+        [Fact]
+        public void GetFiboSeries_Input1_ResultMultiple()
+        {
+            fibo.Range = 1;
+            var result = fibo.GetFiboSeries();
 
-//            Assert.That(result, Does.Contain(3));
-//            Assert.That(result.Count, Is.EqualTo(6));
-//            Assert.That(result, Does.Not.Contain(4));
-//            Assert.That(result, Is.EqualTo(new List<int> { 0, 1, 1, 2, 3, 5 }));
-//        }
-//    }
-//}
+            Assert.NotEmpty(result);
+            //Assert.That(result, Is.Ordered);
+            Assert.Equal(result.OrderBy(u => u), result);
+
+            Assert.Equal(new List<int> { 0 }, result);
+        }
+
+        [Fact]
+        public void GetFiboSeries_Input6_ResultMultiple()
+        {
+            fibo.Range = 6;
+            var result = fibo.GetFiboSeries();
+
+            Assert.Contains(3, result);
+            Assert.Equal(6, result.Count);
+            Assert.DoesNotContain(4, result);
+            Assert.Equal(new List<int> { 0, 1, 1, 2, 3, 5 }, result);
+        }
+    }
+}
