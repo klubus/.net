@@ -1,33 +1,47 @@
-﻿Method1();
-Method2();
-Method3();
-Console.ReadLine();
+﻿namespace MultiThreadingInCSharp
+{
+    public delegate void SumOfNumberCallbackDelegate(int SumOfNum);
 
-static void Method1()
-{
-    for (int i = 1; i <= 5; i++)
+    class Program
     {
-        Console.WriteLine("Method1 :" + i);
-    }
-}
-static void Method2()
-{
-    for (int i = 1; i <= 5; i++)
-    {
-        Console.WriteLine("Method2 :" + i);
-        if (i == 2)
+        public static void DisplaySumOfNo(int Sum)
         {
-            Console.WriteLine("Method2 DB operation Started");
-            //Sleep for 10 seconds
-            Thread.Sleep(10000);
-            Console.WriteLine("Method2 DB operation Completed");
+            Console.WriteLine("The sum of number is: " + Sum);
+        }
+
+        static void Main(string[] args)
+        {
+            SumOfNumberCallbackDelegate _callback = new SumOfNumberCallbackDelegate(DisplaySumOfNo);
+            int max = 10;
+            NumberHelper _helper = new NumberHelper(max, _callback);
+            ThreadStart obj = new ThreadStart(_helper.ShowNumbers);
+
+            Thread t = new Thread(obj);
+            t.Start();
+            Console.ReadLine();
         }
     }
-}
-static void Method3()
-{
-    for (int i = 1; i <= 5; i++)
+    public class NumberHelper
     {
-        Console.WriteLine("Method3 :" + i);
+        private int _Number;
+        SumOfNumberCallbackDelegate _callbackDelegate;
+        public NumberHelper(int num, SumOfNumberCallbackDelegate @delegate)
+        {
+            _Number = num;
+            _callbackDelegate = @delegate;
+        }
+
+        public void ShowNumbers()
+        {
+            int sum = 0;
+            for (int i = 0; i < _Number; i++)
+            {
+                sum = sum + i;
+            }
+
+            if (_callbackDelegate != null)
+                _callbackDelegate(sum);
+        }
+
     }
 }
