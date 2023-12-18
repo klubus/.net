@@ -1,47 +1,60 @@
-﻿namespace MultiThreadingInCSharp
+﻿using System.Diagnostics;
+
+namespace MultiThreadingInCSharp
 {
-    public delegate void SumOfNumberCallbackDelegate(int SumOfNum);
 
     class Program
     {
-        public static void DisplaySumOfNo(int Sum)
-        {
-            Console.WriteLine("The sum of number is: " + Sum);
-        }
-
+        public static int Sum = 0;
         static void Main(string[] args)
         {
-            SumOfNumberCallbackDelegate _callback = new SumOfNumberCallbackDelegate(DisplaySumOfNo);
-            int max = 10;
-            NumberHelper _helper = new NumberHelper(max, _callback);
-            ThreadStart obj = new ThreadStart(_helper.ShowNumbers);
+            Console.WriteLine("Main method execution started");
 
-            Thread t = new Thread(obj);
-            t.Start();
+            Stopwatch _watch = Stopwatch.StartNew();
+            Thread t1 = new Thread(Addition);
+            Thread t2 = new Thread(Addition);
+            Thread t3 = new Thread(Addition);
+
+            t1.Start();
+            t2.Start();
+            t3.Start();
+
+            t1.Join();
+            t2.Join();
+            t3.Join();
+
+            Console.WriteLine("Total sum is: " + Sum);
+            _watch.Stop();
+            Console.WriteLine("Total tick time is: " + _watch.ElapsedTicks);
+
             Console.ReadLine();
         }
-    }
-    public class NumberHelper
-    {
-        private int _Number;
-        SumOfNumberCallbackDelegate _callbackDelegate;
-        public NumberHelper(int num, SumOfNumberCallbackDelegate @delegate)
-        {
-            _Number = num;
-            _callbackDelegate = @delegate;
-        }
 
-        public void ShowNumbers()
+        public static object _lock = new object();
+
+        public static void Addition()
         {
-            int sum = 0;
-            for (int i = 0; i < _Number; i++)
+            for (int i = 1; i < 50000; i++)
             {
-                sum = sum + i;
+                //Sum++;
+                //Interlocked.Increment(ref Sum);
+                //lock (_lock)
+                //{
+                //    Sum++;
+                //}
+                bool lockTaken = false;
+                Monitor.Enter(_lock, ref lockTaken);
+                try
+                {
+                    Sum++;
+                }
+                finally
+                {
+                    if (lockTaken)
+                        Monitor.Exit(_lock);
+                }
             }
-
-            if (_callbackDelegate != null)
-                _callbackDelegate(sum);
         }
-
     }
+
 }
