@@ -1,60 +1,46 @@
-﻿using System.Diagnostics;
-
-namespace MultiThreadingInCSharp
+﻿namespace MultiThreadingInCSharp
 {
 
     class Program
     {
-        public static int Sum = 0;
+        static object _lock = new object();
         static void Main(string[] args)
         {
-            Console.WriteLine("Main method execution started");
-
-            Stopwatch _watch = Stopwatch.StartNew();
-            Thread t1 = new Thread(Addition);
-            Thread t2 = new Thread(Addition);
-            Thread t3 = new Thread(Addition);
+            Thread t1 = new Thread(Write);
+            Thread t2 = new Thread(Read);
 
             t1.Start();
             t2.Start();
-            t3.Start();
 
             t1.Join();
             t2.Join();
-            t3.Join();
-
-            Console.WriteLine("Total sum is: " + Sum);
-            _watch.Stop();
-            Console.WriteLine("Total tick time is: " + _watch.ElapsedTicks);
-
             Console.ReadLine();
         }
 
-        public static object _lock = new object();
-
-        public static void Addition()
+        public static void Write()
         {
-            for (int i = 1; i < 50000; i++)
+            Monitor.Enter(_lock);
+            for (int i = 0; i < 5; i++)
             {
-                //Sum++;
-                //Interlocked.Increment(ref Sum);
-                //lock (_lock)
-                //{
-                //    Sum++;
-                //}
-                bool lockTaken = false;
-                Monitor.Enter(_lock, ref lockTaken);
-                try
-                {
-                    Sum++;
-                }
-                finally
-                {
-                    if (lockTaken)
-                        Monitor.Exit(_lock);
-                }
+                Monitor.Pulse(_lock);
+                Console.WriteLine("Write Thread Working.." + i);
+                Console.WriteLine("Write Thread Completed.." + i);
+                Monitor.Wait(_lock);
             }
         }
+
+        public static void Read()
+        {
+            Monitor.Enter(_lock);
+            for (int i = 0; i < 5; i++)
+            {
+                Monitor.Pulse(_lock);
+                Console.WriteLine("Read Thread Working.." + i);
+                Console.WriteLine("Read Thread Completed.." + i);
+                Monitor.Wait(_lock);
+            }
+        }
+
     }
 
 }
