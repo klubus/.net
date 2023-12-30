@@ -5,7 +5,11 @@ namespace Football.Infrastructure.Repositories
 {
     public class TeamRepository : ITeamRepository
     {
-        private static readonly ISet<Team> _teams = new HashSet<Team>();
+        private static readonly ISet<Team> _teams = new HashSet<Team>()
+        {
+            new Team(Guid.NewGuid(), "Barca", "Spain", 1999),
+
+        };
         public async Task<Team> GetAsync(Guid id)
         {
             return await Task.FromResult(_teams.FirstOrDefault(t => t.Id == id));

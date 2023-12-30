@@ -1,11 +1,20 @@
+using Football.Core.Repositories;
+using Football.Infrastructure.Mappers;
+using Football.Infrastructure.Repositories;
+using Football.Infrastructure.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddSingleton(AutoMapperConfig.Initialize());
+
 
 var app = builder.Build();
 

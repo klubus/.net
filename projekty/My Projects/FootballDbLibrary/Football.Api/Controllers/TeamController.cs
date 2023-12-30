@@ -5,14 +5,20 @@ namespace Football.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TeamController : ControllerBase
+    public class TeamController : Controller
     {
         private readonly TeamService _teamService;
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        public TeamController(TeamService teamService)
         {
-            _teamRepository.AddAsync()
+            _teamService = teamService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(string name)
+        {
+            var team = await _teamService.GetAsync(name);
+            return Json(team);
         }
     }
 }

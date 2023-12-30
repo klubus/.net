@@ -1,25 +1,23 @@
-﻿using Football.Infrastructure.DTO;
+﻿using AutoMapper;
+using Football.Infrastructure.DTO;
 
 namespace Football.Infrastructure.Services
 {
     public class TeamService : ITeamService
     {
         private readonly ITeamService _service;
+        private readonly IMapper _mapper;
 
-        public TeamService(ITeamService service)
+        public TeamService(ITeamService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
         public async Task<TeamDTO> GetAsync(Guid id)
         {
             var team = await _service.GetAsync(id);
 
-            return new TeamDTO
-            {
-                Name = team.Name,
-                Country = team.Country,
-                YearOfFounded = team.YearOfFounded,
-            };
+            return _mapper.Map<TeamDTO>(team);
         }
 
         public async Task<TeamDTO> GetAsync(string name)
@@ -28,26 +26,26 @@ namespace Football.Infrastructure.Services
 
             return new TeamDTO
             {
-                Name = team.Name,
-                Country = team.Country,
-                YearOfFounded = team.YearOfFounded,
+                Name = name,
+                Country = "Poland",
+                YearOfFounded = 1992,
             };
         }
 
-        public Task<TeamDTO> AddAsync(Guid id, string name, string country, int yearOfFounded)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task AddAsync(Guid id, string name, string country, int yearOfFounded)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<TeamDTO> UpdateAsync(Guid id, string name, string country, int yearOfFounded)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task UpdateAsync(Guid id, string name, string country, int yearOfFounded)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<TeamDTO> DeleteAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task DeleteAsync(Guid id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
     }
 }
