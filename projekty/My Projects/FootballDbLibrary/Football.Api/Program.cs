@@ -10,9 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+//builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 
 
