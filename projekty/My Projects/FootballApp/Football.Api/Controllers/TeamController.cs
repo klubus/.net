@@ -7,35 +7,24 @@ namespace Football.Api.Controllers
     [ApiController]
     public class TeamController : ControllerBase
     {
-        private static List<Team> teams = new List<Team>
+        private readonly DataContext _context;
+
+        public TeamController(DataContext context)
         {
-            new Team
-            {
-                Name = "Barcelona",
-                Country = "Spain",
-                Id = 1,
-                YearOfFunded = 1900
-            },
-            new Team
-            {
-                Name = "Arsenal",
-                Country = "UK",
-                Id = 2,
-                YearOfFunded = 1955
-            }
-        };
+            _context = context;
+        }
 
         [HttpGet]
         public async Task<ActionResult<List<Team>>> Get()
         {
 
-            return Ok(teams);
+            return Ok(await _context.Teams.ToListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> Get(int id)
         {
-            var singleTeam = teams.FirstOrDefault(t => t.Id == id);
+            var singleTeam = _context.Teams.FirstOrDefault(t => t.Id == id);
             if (singleTeam == null)
             {
                 return NotFound();
@@ -46,14 +35,15 @@ namespace Football.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Team>>> AddTeam([FromBody] Team team)
         {
-            teams.Add(team);
+            await _context.Teams.AddAsync(team);
+            await _context.SaveChangesAsync();
             return Ok();
         }
 
         [HttpPut]
         public async Task<ActionResult<List<Team>>> UpdateTeam([FromBody] Team team)
         {
-            var singleTeam = teams.FirstOrDefault(t => t.Id == team.Id);
+            var singleTeam = _context.Teams.FirstOrDefault(t => t.Id == team.Id);
             if (singleTeam == null)
             {
                 return NotFound();
@@ -62,18 +52,20 @@ namespace Football.Api.Controllers
             singleTeam.Name = team.Name;
             singleTeam.Country = team.Country;
             singleTeam.YearOfFunded = team.YearOfFunded;
+            await _context.SaveChangesAsync();
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Team>> Delete(int id)
         {
-            var singleTeam = teams.FirstOrDefault(t => t.Id == id);
+            var singleTeam = _context.Teams.FirstOrDefault(t => t.Id == id);
             if (singleTeam == null)
             {
                 return NotFound();
             }
-            teams.Remove(singleTeam);
+            _context.Teams.Remove(singleTeam);
+            await _context.SaveChangesAsync();
             return Ok();
         }
 
