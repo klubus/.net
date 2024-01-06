@@ -1,5 +1,5 @@
-﻿using Football.Api.Models;
-using Football.Api.Services.TeamService;
+﻿using FootballApp.Data.Entities;
+using FootballApp.Service.Interface.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Football.Api.Controllers
@@ -8,11 +8,11 @@ namespace Football.Api.Controllers
     [ApiController]
     public class TeamController : ControllerBase
     {
-        private readonly DataContext _dataContext;
+        private readonly DatabaseContext _dataContext;
 
         public ITeamService _teamService { get; }
 
-        public TeamController(DataContext context, ITeamService teamService)
+        public TeamController(DatabaseContext context, ITeamService teamService)
         {
             _dataContext = context;
             _teamService = teamService;
@@ -22,7 +22,7 @@ namespace Football.Api.Controllers
         public async Task<ActionResult<List<Team>>> Get()
         {
 
-            return Ok(_teamService.GetAllTeams());
+            return Ok(await _teamService.GetAllTeams());
         }
 
         [HttpGet("{id}")]
@@ -33,7 +33,7 @@ namespace Football.Api.Controllers
             {
                 return NotFound();
             }
-            return Ok(singleTeam);
+            return Ok(await singleTeam);
         }
 
         [HttpPost]

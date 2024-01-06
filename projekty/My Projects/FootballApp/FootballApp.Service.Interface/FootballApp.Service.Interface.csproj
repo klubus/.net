@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FootballApp.Data\FootballApp.Data.csproj" />
+    <ProjectReference Include="..\FootballApp.Dto\FootballApp.Dto.csproj" />
+  </ItemGroup>
+
 </Project>

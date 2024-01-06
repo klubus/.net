@@ -1,12 +1,15 @@
-﻿using Football.Api.Models;
+﻿using FootballApp.Data.Contexts;
+using FootballApp.Data.Entities;
+using FootballApp.Service.Interface.Services;
+using Microsoft.EntityFrameworkCore;
 
-namespace Football.Api.Services.TeamService
+namespace FootballApp.Service.Services
 {
     public class TeamService : ITeamService
     {
-        private readonly DataContext _dataContext;
+        private readonly DatabaseContext _dataContext;
 
-        public TeamService(DataContext dataContext)
+        public TeamService(DatabaseContext dataContext)
         {
             _dataContext = dataContext;
         }
@@ -17,7 +20,7 @@ namespace Football.Api.Services.TeamService
 
         public async Task<Team> GetTeamById(int id)
         {
-            return _dataContext.Teams.FirstOrDefault(t => t.Id == id);
+            return await _dataContext.Teams.FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task AddTeam(Team team)
@@ -43,7 +46,6 @@ namespace Football.Api.Services.TeamService
             _dataContext.Teams.Remove(singleTeam);
             await _dataContext.SaveChangesAsync();
         }
-
 
     }
 }

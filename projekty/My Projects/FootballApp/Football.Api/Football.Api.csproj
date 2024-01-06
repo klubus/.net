@@ -17,4 +17,12 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FootballApp.Data\FootballApp.Data.csproj" />
+    <ProjectReference Include="..\FootballApp.Dto\FootballApp.Dto.csproj" />
+    <ProjectReference Include="..\FootballApp.Repository\FootballApp.Repository.csproj" />
+    <ProjectReference Include="..\FootballApp.Service.Interface\FootballApp.Service.Interface.csproj" />
+    <ProjectReference Include="..\FootballApp.Service\FootballApp.Service.csproj" />
+  </ItemGroup>
+
 </Project>

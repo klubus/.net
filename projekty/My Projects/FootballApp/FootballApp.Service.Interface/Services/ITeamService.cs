@@ -1,6 +1,6 @@
-﻿using Football.Api.Models;
+﻿using FootballApp.Data.Entities;
 
-namespace Football.Api.Services.TeamService
+namespace FootballApp.Service.Interface.Services
 {
     public interface ITeamService
     {
@@ -10,5 +10,6 @@ namespace Football.Api.Services.TeamService
         Task EditTeam(Team team);
         Task DeleteTeam(int id);
 
+        // przygotować automapper do zmapowania na TeamDto
     }
 }

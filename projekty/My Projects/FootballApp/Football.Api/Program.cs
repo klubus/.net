@@ -1,17 +1,20 @@
-global using Football.Api.Data;
-global using Microsoft.EntityFrameworkCore;
+global using FootballApp.Data.Contexts;
+using FootballApp.Service.Interface.Services;
+using FootballApp.Service.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<DataContext>(options =>
+builder.Services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ITeamService, TeamService>();
 
 var app = builder.Build();
 
