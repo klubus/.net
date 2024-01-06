@@ -28,12 +28,12 @@ namespace Football.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> Get(int id)
         {
-            var singleTeam = _teamService.GetTeamById(id);
-            if (singleTeam == null)
-            {
-                return NotFound();
-            }
-            return Ok(await singleTeam);
+            //var singleTeam = _teamService.GetTeamById(id);
+            //if (singleTeam == null)
+            //{
+            //    return NotFound();
+            //}
+            return Ok(await _teamService.GetTeamById(id));
         }
 
         [HttpPost]

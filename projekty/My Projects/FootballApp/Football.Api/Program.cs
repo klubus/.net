@@ -1,4 +1,5 @@
 global using FootballApp.Data.Contexts;
+using FootballApp.Service.AutoMapper;
 using FootballApp.Service.Interface.Services;
 using FootballApp.Service.Services;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 
 var app = builder.Build();
 

@@ -1,5 +1,7 @@
-﻿using FootballApp.Data.Contexts;
+﻿using AutoMapper;
+using FootballApp.Data.Contexts;
 using FootballApp.Data.Entities;
+using FootballApp.Dto.Dtos;
 using FootballApp.Service.Interface.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,19 +10,23 @@ namespace FootballApp.Service.Services
     public class TeamService : ITeamService
     {
         private readonly DatabaseContext _dataContext;
+        private readonly IMapper _mapper;
 
-        public TeamService(DatabaseContext dataContext)
+        public TeamService(DatabaseContext dataContext, IMapper mapper)
         {
             _dataContext = dataContext;
+            _mapper = mapper;
         }
         public async Task<IEnumerable<Team>> GetAllTeams()
         {
             return await _dataContext.Teams.ToListAsync();
         }
 
-        public async Task<Team> GetTeamById(int id)
+        public async Task<TeamDto> GetTeamById(int id)
         {
-            return await _dataContext.Teams.FirstOrDefaultAsync(t => t.Id == id);
+            var team = await _dataContext.Teams.FirstOrDefaultAsync(t => t.Id == id);
+
+            return _mapper.Map<TeamDto>(team);
         }
 
         public async Task AddTeam(Team team)
@@ -42,8 +48,8 @@ namespace FootballApp.Service.Services
         }
         public async Task DeleteTeam(int id)
         {
-            var singleTeam = await GetTeamById(id);
-            _dataContext.Teams.Remove(singleTeam);
+            var team = await _dataContext.Teams.FirstOrDefaultAsync(t => t.Id == id);
+            _dataContext.Teams.Remove(team);
             await _dataContext.SaveChangesAsync();
         }
 
