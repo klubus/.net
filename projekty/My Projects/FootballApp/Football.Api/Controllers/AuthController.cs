@@ -1,5 +1,6 @@
 ﻿using Football.Api.Models;
 using FootballApp.Dto.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,6 +11,7 @@ namespace Football.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AuthController : ControllerBase
     {
         public static User user = new User();
@@ -20,7 +22,7 @@ namespace Football.Api.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("register")]
+        [HttpPost("register"), AllowAnonymous]
         public async Task<ActionResult<User>> Register(UserDto request)
         {
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
