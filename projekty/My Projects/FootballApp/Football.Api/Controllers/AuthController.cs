@@ -1,6 +1,7 @@
 ﻿using Football.Api.Models;
 using FootballApp.Dto.Dtos;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,41 +15,71 @@ namespace Football.Api.Controllers
     [Authorize]
     public class AuthController : ControllerBase
     {
-        public static User user = new User();
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
-        public AuthController(IConfiguration configuration)
+        public AuthController(IConfiguration configuration, UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _configuration = configuration;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         [HttpPost("register"), AllowAnonymous]
-        public async Task<ActionResult<User>> Register(UserDto request)
+        public async Task<IActionResult> Register([FromBody] UserDto registerUser, string role)
         {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-            user.PasswordSalt = passwordSalt;
-            user.PasswordHash = passwordHash;
-            user.Username = request.Username;
+            // Check User Exist
+            var userExist = await _userManager.FindByEmailAsync(registerUser.Email);
 
-            return Ok(user);
-        }
-
-        [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDto request)
-        {
-            if (user.Username != request.Username)
+            if (userExist != null)
             {
-                return BadRequest("User not found.");
+                return StatusCode(StatusCodes.Status403Forbidden);
             }
 
-            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            // Add the User in the database
+            IdentityUser user = new()
             {
-                return BadRequest("Wrong password");
-            }
+                Email = registerUser.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = registerUser.Username
+            };
 
-            string token = CreateToken(user);
-            return Ok(token);
+            if (await _roleManager.RoleExistsAsync(role))
+            {
+                var result = await _userManager.CreateAsync(user, registerUser.Password);
+
+                if (!result.Succeeded)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+
+                await _userManager.AddToRoleAsync(user, role);
+                return StatusCode(StatusCodes.Status201Created);
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
+
+        //[HttpPost("login")]
+        //public async Task<ActionResult<string>> Login(UserDto request)
+        //{
+        //    if (user.Username != request.Username)
+        //    {
+        //        return BadRequest("User not found.");
+        //    }
+
+        //    if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+        //    {
+        //        return BadRequest("Wrong password");
+        //    }
+
+        //    string token = CreateToken(user);
+        //    return Ok(token);
+        //}
 
         private string CreateToken(User user)
         {
