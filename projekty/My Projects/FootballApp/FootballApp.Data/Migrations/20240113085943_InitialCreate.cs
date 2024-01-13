@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace Football.Api.Migrations
+namespace FootballApp.Data.Migrations
 {
-    public partial class CreateInitial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
