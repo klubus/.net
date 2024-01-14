@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Football.Api.Controllers
 {
@@ -64,22 +65,51 @@ namespace Football.Api.Controllers
             }
         }
 
-        //[HttpPost("login")]
-        //public async Task<ActionResult<string>> Login(UserDto request)
-        //{
-        //    if (user.Username != request.Username)
-        //    {
-        //        return BadRequest("User not found.");
-        //    }
+        [HttpPost("login"), AllowAnonymous]
+        public async Task<ActionResult<string>> Login([FromBody] LoginDto login)
+        {
+            // checking the user
+            var user = await _userManager.FindByNameAsync(login.Username);
 
-        //    if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
-        //    {
-        //        return BadRequest("Wrong password");
-        //    }
+            if (user != null && await _userManager.CheckPasswordAsync(user, login.Password))
+            {
+                var authClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+                var userRoles = await _userManager.GetRolesAsync(user);
+                foreach (var role in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, role));
+                }
 
-        //    string token = CreateToken(user);
-        //    return Ok(token);
-        //}
+                var jwtToken = GetToken(authClaims);
+
+                return Ok(new
+                {
+                    token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+                    expiration = jwtToken.ValidTo
+                });
+            }
+
+            return Unauthorized();
+
+        }
+
+        private JwtSecurityToken GetToken(List<Claim> authClaims)
+        {
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires: DateTime.UtcNow.AddHours(12),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256));
+
+            return token;
+        }
 
         private string CreateToken(User user)
         {
