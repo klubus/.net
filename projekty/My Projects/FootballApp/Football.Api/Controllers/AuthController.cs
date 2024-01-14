@@ -1,12 +1,12 @@
-﻿using Football.Api.Models;
+﻿using FootballApp.Data.Models;
 using FootballApp.Dto.Dtos;
+using FootballApp.Service.Interface.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace Football.Api.Controllers
@@ -19,27 +19,28 @@ namespace Football.Api.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IUserService _userService;
 
         public AuthController(IConfiguration configuration, UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager, IUserService userService)
         {
             _configuration = configuration;
             _userManager = userManager;
             _roleManager = roleManager;
+            _userService = userService;
         }
 
         [HttpPost("register"), AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody] UserDto registerUser, string role)
+        public async Task<IActionResult> Register([FromBody] UserModel registerUser, string role)
         {
-            // Check User Exist
-            var userExist = await _userManager.FindByEmailAsync(registerUser.Email);
+            var userExist = _userService.FindUserByEmail(registerUser.Email);
 
             if (userExist != null)
             {
-                return StatusCode(StatusCodes.Status403Forbidden);
+                return new ObjectResult("User already exists") { StatusCode = 403 };
+
             }
 
-            // Add the User in the database
             IdentityUser user = new()
             {
                 Email = registerUser.Email,
@@ -111,43 +112,5 @@ namespace Football.Api.Controllers
             return token;
         }
 
-        private string CreateToken(User user)
-        {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username)
-            };
-
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
-
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-
-            var token = new JwtSecurityToken(
-                claims: claims,
-                expires: DateTime.UtcNow.AddDays(1),
-                signingCredentials: creds);
-
-            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-            return jwt;
-        }
-
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
-            using (var hmac = new HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            }
-        }
-
-        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-        {
-            using (var hmac = new HMACSHA512(passwordSalt))
-            {
-                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                return computedHash.SequenceEqual(passwordHash);
-            }
-        }
     }
 }

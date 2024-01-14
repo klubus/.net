@@ -47,6 +47,7 @@ builder.Services.AddSwaggerGen(options =>
 
 
 builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
