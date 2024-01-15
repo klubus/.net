@@ -33,37 +33,24 @@ namespace Football.Api.Controllers
         [HttpPost("register"), AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] UserModel registerUser, string role)
         {
-            var userExist = _userService.FindUserByEmail(registerUser.Email);
 
-            if (userExist != null)
+            if (await _userService.IsUserExists(registerUser.Email))
             {
                 return new ObjectResult("User already exists") { StatusCode = 403 };
-
             }
 
-            IdentityUser user = new()
+            var user = await _userService.AddUser(registerUser);
+
+            if (await _userService.AddRoleToUser(user, role))
             {
-                Email = registerUser.Email,
-                SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = registerUser.Username
-            };
+                return new ObjectResult("User created") { StatusCode = 201 };
 
-            if (await _roleManager.RoleExistsAsync(role))
-            {
-                var result = await _userManager.CreateAsync(user, registerUser.Password);
-
-                if (!result.Succeeded)
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError);
-                }
-
-                await _userManager.AddToRoleAsync(user, role);
-                return StatusCode(StatusCodes.Status201Created);
             }
             else
             {
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return new ObjectResult("User cannot be created") { StatusCode = 500 };
             }
+
         }
 
         [HttpPost("login"), AllowAnonymous]

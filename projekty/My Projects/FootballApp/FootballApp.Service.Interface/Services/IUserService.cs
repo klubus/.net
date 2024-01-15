@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FootballApp.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace FootballApp.Service.Interface.Services
 {
     public interface IUserService
     {
-        Task<IdentityUser> FindUserByEmail(string userEmail);
+        Task<bool> IsUserExists(string userEmail);
+        Task<IdentityUser> AddUser(UserModel registerUser);
+        Task<bool> AddRoleToUser(IdentityUser user, string role);
 
     }
 }
