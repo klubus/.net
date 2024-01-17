@@ -17,29 +17,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dto", "Dto", "{DE03B7B7-BDE3-40D0-86D3-0CDC6FA8DB37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Common", "FootballApp.Common\FootballApp.Common.csproj", "{F388F9F8-FB22-4156-A336-2E07A77F426F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Common", "FootballApp.Common\FootballApp.Common.csproj", "{F388F9F8-FB22-4156-A336-2E07A77F426F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Data", "FootballApp.Data\FootballApp.Data.csproj", "{C7F93524-4B38-46E5-A633-1B9C3086E7CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Data", "FootballApp.Data\FootballApp.Data.csproj", "{C7F93524-4B38-46E5-A633-1B9C3086E7CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Data.Interface", "FootballApp.Data.Interface\FootballApp.Data.Interface.csproj", "{F604C3C3-79E7-4671-9C98-575635CF6A2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Data.Interface", "FootballApp.Data.Interface\FootballApp.Data.Interface.csproj", "{F604C3C3-79E7-4671-9C98-575635CF6A2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Data.Test", "FootballApp.Data.Test\FootballApp.Data.Test.csproj", "{59F081EF-B762-4924-AA3A-3DB1FE78CDE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Data.Test", "FootballApp.Data.Test\FootballApp.Data.Test.csproj", "{59F081EF-B762-4924-AA3A-3DB1FE78CDE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Dto", "FootballApp.Dto\FootballApp.Dto.csproj", "{028EBDB5-BD86-49C2-8876-BC09F05CCAC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Dto", "FootballApp.Dto\FootballApp.Dto.csproj", "{028EBDB5-BD86-49C2-8876-BC09F05CCAC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Dto.Test", "FootballApp.Dto.Test\FootballApp.Dto.Test.csproj", "{199AAF7D-9C2B-4E5B-A6FA-7C1360DCBD8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Dto.Test", "FootballApp.Dto.Test\FootballApp.Dto.Test.csproj", "{199AAF7D-9C2B-4E5B-A6FA-7C1360DCBD8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Repository", "FootballApp.Repository\FootballApp.Repository.csproj", "{4F171B9E-8C93-4EC2-BC33-8D861B09032C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Repository", "FootballApp.Repository\FootballApp.Repository.csproj", "{4F171B9E-8C93-4EC2-BC33-8D861B09032C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Repository.Interface", "FootballApp.Repository.Interface\FootballApp.Repository.Interface.csproj", "{AC8D2252-C1B3-4721-9AFF-42E1803226EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Repository.Interface", "FootballApp.Repository.Interface\FootballApp.Repository.Interface.csproj", "{AC8D2252-C1B3-4721-9AFF-42E1803226EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Repository.Test", "FootballApp.Repository.Test\FootballApp.Repository.Test.csproj", "{731F3E32-AB0F-4EC3-995C-EFA9474E2E1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Repository.Test", "FootballApp.Repository.Test\FootballApp.Repository.Test.csproj", "{731F3E32-AB0F-4EC3-995C-EFA9474E2E1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Service", "FootballApp.Service\FootballApp.Service.csproj", "{5A3348AC-2BC2-4BE9-8D39-5CAB249D6563}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Service", "FootballApp.Service\FootballApp.Service.csproj", "{5A3348AC-2BC2-4BE9-8D39-5CAB249D6563}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Service.Interface", "FootballApp.Service.Interface\FootballApp.Service.Interface.csproj", "{374F1B33-5F40-48EA-A5B2-833B4F21A6F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Service.Interface", "FootballApp.Service.Interface\FootballApp.Service.Interface.csproj", "{374F1B33-5F40-48EA-A5B2-833B4F21A6F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballApp.Service.Test", "FootballApp.Service.Test\FootballApp.Service.Test.csproj", "{87FE1E64-2BB4-4750-8FD2-B12793003183}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballApp.Service.Test", "FootballApp.Service.Test\FootballApp.Service.Test.csproj", "{87FE1E64-2BB4-4750-8FD2-B12793003183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

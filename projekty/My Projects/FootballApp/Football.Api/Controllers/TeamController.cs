@@ -9,18 +9,22 @@ namespace Football.Api.Controllers
     public class TeamController : ControllerBase
     {
         private readonly DatabaseContext _dataContext;
+        private readonly ILogger<TeamController> _logger;
 
         public ITeamService _teamService { get; }
 
-        public TeamController(DatabaseContext context, ITeamService teamService)
+        public TeamController(DatabaseContext context, ITeamService teamService, ILogger<TeamController> logger)
         {
             _dataContext = context;
             _teamService = teamService;
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Team>>> Get()
         {
+            _logger.LogInformation("Hii");
+            _logger.LogTrace("Hii");
 
             return Ok(await _teamService.GetAllTeams());
         }
@@ -28,11 +32,6 @@ namespace Football.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> Get(int id)
         {
-            //var singleTeam = _teamService.GetTeamById(id);
-            //if (singleTeam == null)
-            //{
-            //    return NotFound();
-            //}
             return Ok(await _teamService.GetTeamById(id));
         }
 

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs\AllFile\" />
+    <Folder Include="Logs\OwnFile\" />
+  </ItemGroup>
+
 </Project>

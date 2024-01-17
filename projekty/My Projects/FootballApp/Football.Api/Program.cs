@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NLog;
+using NLog.Web;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
@@ -62,7 +64,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
+
+var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+
 var app = builder.Build();
+
 
 if (app.Environment.IsDevelopment())
 {
