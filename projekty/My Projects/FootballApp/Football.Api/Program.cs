@@ -1,7 +1,8 @@
 global using FootballApp.Data.Contexts;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Football.Api.AutoFac;
 using FootballApp.Service.AutoMapper;
-using FootballApp.Service.Interface.Services;
-using FootballApp.Service.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,17 @@ using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//var containerBuilder = new ContainerBuilder();
+//containerBuilder.RegisterModule<AutoFacModule>();
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+// Call ConfigureContainer on the Host sub property 
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+{
+    builder.RegisterModule(new AutoFacModule());
+});
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>(options =>
@@ -48,8 +60,8 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 
-builder.Services.AddScoped<ITeamService, TeamService>();
-builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<ITeamService, TeamService>();
+//builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -67,7 +79,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Logging.ClearProviders();
 builder.Host.UseNLog();
 
-var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
 var app = builder.Build();
 
