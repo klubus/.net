@@ -15,12 +15,9 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//var containerBuilder = new ContainerBuilder();
-//containerBuilder.RegisterModule<AutoFacModule>();
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-// Call ConfigureContainer on the Host sub property 
 builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 {
     builder.RegisterModule(new AutoFacModule());
@@ -60,8 +57,6 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 
-//builder.Services.AddScoped<ITeamService, TeamService>();
-//builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSingleton(AutoMapperConfig.Initialize());
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
