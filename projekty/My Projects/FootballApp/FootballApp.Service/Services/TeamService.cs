@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FootballApp.Data.Contexts;
 using FootballApp.Data.Entities;
-using FootballApp.Dto.Dtos;
+using FootballApp.Dto.Dtos.TeamDtos;
 using FootballApp.Service.Interface.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,16 +17,18 @@ namespace FootballApp.Service.Services
             _dataContext = dataContext;
             _mapper = mapper;
         }
+
+        //poprawić, żeby zwracał Dto
         public async Task<IEnumerable<Team>> GetAllTeams()
         {
             return await _dataContext.Teams.ToListAsync();
         }
 
-        public async Task<TeamDto> GetTeamById(int id)
+        public async Task<TeamResponseDto> GetTeamById(int id)
         {
             var team = await _dataContext.Teams.FirstOrDefaultAsync(t => t.Id == id);
 
-            return _mapper.Map<TeamDto>(team);
+            return _mapper.Map<TeamResponseDto>(team);
         }
 
         public async Task AddTeam(Team team)
