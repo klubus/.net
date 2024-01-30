@@ -9,10 +9,12 @@ namespace FootballApp.Data.Contexts
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<League> Leagues { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            SeedRoles(builder);
+            //SeedRoles(builder);
         }
 
         private static void SeedRoles(ModelBuilder builder)
@@ -23,7 +25,7 @@ namespace FootballApp.Data.Contexts
                 );
         }
 
-        public DbSet<Team> Teams { get; set; }
+
 
     }
 }

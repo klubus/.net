@@ -43,7 +43,7 @@ namespace FootballApp.Service.Services
 
             singleTeam.Id = team.Id;
             singleTeam.Name = team.Name;
-            singleTeam.Country = team.Country;
+            singleTeam.League.Name = team.League.Name;
             singleTeam.YearOfFunded = team.YearOfFunded;
 
             await _dataContext.SaveChangesAsync();
