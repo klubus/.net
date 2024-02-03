@@ -2,6 +2,7 @@
 using FootballApp.Dto.Dtos.TeamDtos;
 using FootballApp.Service.Interface.Services;
 using Microsoft.AspNetCore.Mvc;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace Football.Api.Controllers
 {
@@ -21,6 +22,17 @@ namespace Football.Api.Controllers
             _logger = logger;
         }
 
+
+        /// <summary>
+        /// Get All Teams
+        /// </summary>
+        /// <returns> <see cref="Team"/> id</returns>
+        /// <response code="200">OK</response>
+        /// <response code="403">User is not authorized to invoke endpoint</response>
+        /// <response code="500">Any exception</response>  
+        [ProducesResponseType(Status200OK)]
+        [ProducesResponseType(Status403Forbidden)]
+        [ProducesResponseType(Status500InternalServerError)]
         [HttpGet]
         public async Task<ActionResult<List<Team>>> Get()
         {
@@ -29,6 +41,16 @@ namespace Football.Api.Controllers
             return Ok(await _teamService.GetAllTeams());
         }
 
+        /// <summary>
+        /// Get Single Team
+        /// </summary>
+        /// <returns> <see cref="Team"/> id</returns>
+        /// <response code="200">OK</response>
+        /// <response code="403">User is not authorized to invoke endpoint</response>
+        /// <response code="500">Any exception</response>  
+        [ProducesResponseType(Status200OK)]
+        [ProducesResponseType(Status403Forbidden)]
+        [ProducesResponseType(Status500InternalServerError)]
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> Get(int id)
         {
@@ -37,6 +59,21 @@ namespace Football.Api.Controllers
             return Ok(await _teamService.GetTeamById(id));
         }
 
+        /// <summary>
+        /// Creates Team based on given CreateTeamDto
+        /// </summary>
+        /// <param name="request"><see cref="CreateTeamDto"/></param>
+        /// <returns>Created <see cref="Team"/> number.</returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad request, action forbidden</response>
+        /// <response code="404">Resource not found</response>
+        /// <response code="409">The request could not be completed due to a conflict with the current state of target resource.</response>
+        /// <response code="500">Any exception</response>
+        [ProducesResponseType(Status200OK)]
+        [ProducesResponseType(Status400BadRequest)]
+        [ProducesResponseType(Status404NotFound)]
+        [ProducesResponseType(Status409Conflict)]
+        [ProducesResponseType(Status500InternalServerError)]
         [HttpPost]
         public async Task<ActionResult<List<Team>>> AddTeam([FromBody] CreateTeamDto request)
         {
@@ -47,6 +84,21 @@ namespace Football.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Edit Team based on given EditTeamDto
+        /// </summary>
+        /// <param name="team"><see cref="EditTeamDto"/></param>
+        /// <returns>Created <see cref="Team"/> number.</returns>
+        /// <response code="200">OK</response>
+        /// <response code="400">Bad request, action forbidden</response>
+        /// <response code="404">Resource not found</response>
+        /// <response code="409">The request could not be completed due to a conflict with the current state of target resource.</response>
+        /// <response code="500">Any exception</response>
+        [ProducesResponseType(Status200OK)]
+        [ProducesResponseType(Status400BadRequest)]
+        [ProducesResponseType(Status404NotFound)]
+        [ProducesResponseType(Status409Conflict)]
+        [ProducesResponseType(Status500InternalServerError)]
         [HttpPut]
         public async Task<ActionResult<List<Team>>> UpdateTeam([FromBody] EditTeamDto team)
         {
@@ -56,6 +108,16 @@ namespace Football.Api.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Delete Team
+        /// </summary>
+        /// <returns> <see cref="Team"/> id</returns>
+        /// <response code="200">OK</response>
+        /// <response code="403">User is not authorized to invoke endpoint</response>
+        /// <response code="500">Any exception</response>  
+        [ProducesResponseType(Status200OK)]
+        [ProducesResponseType(Status403Forbidden)]
+        [ProducesResponseType(Status500InternalServerError)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Team>> Delete(int id)
         {
