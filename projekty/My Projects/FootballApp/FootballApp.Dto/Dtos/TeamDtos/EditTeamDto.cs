@@ -1,15 +1,10 @@
-﻿using System.Text.Json.Serialization;
-
-namespace FootballApp.Data.Entities
+﻿namespace FootballApp.Dto.Dtos.TeamDtos
 {
-    public class Team
+    public class EditTeamDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int YearOfFunded { get; set; }
-        [JsonIgnore]
-        public League League { get; set; }
         public int LeagueId { get; set; }
-
     }
 }

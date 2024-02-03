@@ -7,8 +7,8 @@ namespace FootballApp.Service.Interface.Services
     {
         Task<IEnumerable<Team>> GetAllTeams();
         Task<TeamResponseDto> GetTeamById(int id);
-        Task AddTeam(Team team);
-        Task EditTeam(Team team);
+        Task AddTeam(CreateTeamDto team);
+        Task EditTeam(EditTeamDto team);
         Task DeleteTeam(int id);
 
     }

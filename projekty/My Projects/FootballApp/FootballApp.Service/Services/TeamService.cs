@@ -31,20 +31,31 @@ namespace FootballApp.Service.Services
             return _mapper.Map<TeamResponseDto>(team);
         }
 
-        public async Task AddTeam(Team team)
+        public async Task AddTeam(CreateTeamDto team)
         {
-            await _dataContext.Teams.AddAsync(team);
+            var league = await _dataContext.Leagues.FindAsync(team.LeagueId);
+
+            // zmienić na AutoMapper
+            var newTeam = new Team
+            {
+                Name = team.Name,
+                YearOfFunded = team.YearOfFunded,
+                League = league,
+            };
+
+            await _dataContext.Teams.AddAsync(newTeam);
             await _dataContext.SaveChangesAsync();
         }
 
-        public async Task EditTeam(Team team)
+        public async Task EditTeam(EditTeamDto team)
         {
             var singleTeam = await GetTeamById(team.Id);
+            var league = await _dataContext.Leagues.FindAsync(team.LeagueId);
 
             singleTeam.Id = team.Id;
             singleTeam.Name = team.Name;
-            singleTeam.League.Name = team.League.Name;
             singleTeam.YearOfFunded = team.YearOfFunded;
+            singleTeam.LeagueId = league;
 
             await _dataContext.SaveChangesAsync();
         }

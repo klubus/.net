@@ -1,4 +1,5 @@
 ﻿using FootballApp.Data.Entities;
+using FootballApp.Dto.Dtos.TeamDtos;
 using FootballApp.Service.Interface.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,8 +24,7 @@ namespace Football.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Team>>> Get()
         {
-            _logger.LogInformation("Hii");
-            _logger.LogTrace("Hii");
+            _logger.LogInformation("Hitting {endpoint}", GetType().FullName);
 
             return Ok(await _teamService.GetAllTeams());
         }
@@ -32,19 +32,26 @@ namespace Football.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> Get(int id)
         {
+            _logger.LogInformation("Get Teams by Id - started");
+
             return Ok(await _teamService.GetTeamById(id));
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Team>>> AddTeam([FromBody] Team team)
+        public async Task<ActionResult<List<Team>>> AddTeam([FromBody] CreateTeamDto request)
         {
-            await _teamService.AddTeam(team);
+            _logger.LogInformation("Hitting {endpoint} with [{body}]: [{@body}]",
+                AddTeam, nameof(CreateTeamDto), request);
+
+            await _teamService.AddTeam(request);
             return Ok();
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<Team>>> UpdateTeam([FromBody] Team team)
+        public async Task<ActionResult<List<Team>>> UpdateTeam([FromBody] EditTeamDto team)
         {
+            _logger.LogInformation("Hitting {endpoint} with [{body}]: [{@body}]",
+                UpdateTeam, nameof(EditTeamDto), team);
             await _teamService.EditTeam(team);
             return Ok();
         }
@@ -52,6 +59,8 @@ namespace Football.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Team>> Delete(int id)
         {
+            _logger.LogInformation("Hitting {endpoint} with {id}", GetType().FullName, id);
+
             await _teamService.DeleteTeam(id);
             return Ok();
         }
