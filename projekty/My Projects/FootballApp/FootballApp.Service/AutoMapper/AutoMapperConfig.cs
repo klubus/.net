@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FootballApp.Data.Entities;
 using FootballApp.Dto.Dtos;
+using FootballApp.Dto.Dtos.TeamDtos;
 
 namespace FootballApp.Service.AutoMapper
 {
@@ -10,6 +11,8 @@ namespace FootballApp.Service.AutoMapper
             => new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Team, TeamDto>();
+                cfg.CreateMap<Team, TeamResponseDto>();
+                cfg.CreateMap<CreateTeamDto, Team>();
             })
             .CreateMapper();
 

@@ -1,14 +1,14 @@
-﻿using FootballApp.Data.Entities;
+﻿using FootballApp.Common.Framework.Interface;
 using FootballApp.Dto.Dtos.TeamDtos;
 
 namespace FootballApp.Service.Interface.Services
 {
     public interface ITeamService
     {
-        Task<IEnumerable<Team>> GetAllTeams();
+        Task<IEnumerable<TeamResponseDto>> GetAllTeams();
         Task<TeamResponseDto> GetTeamById(int id);
-        Task AddTeam(CreateTeamDto team);
-        Task EditTeam(EditTeamDto team);
+        Task<IActionResult<TeamResponseDto>> AddTeam(CreateTeamDto team);
+        Task<IActionResult<TeamResponseDto>> EditTeam(EditTeamDto team);
         Task DeleteTeam(int id);
 
     }

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FootballApp.Common\FootballApp.Common.csproj" />
     <ProjectReference Include="..\FootballApp.Data\FootballApp.Data.csproj" />
     <ProjectReference Include="..\FootballApp.Dto\FootballApp.Dto.csproj" />
   </ItemGroup>

@@ -80,8 +80,10 @@ namespace Football.Api.Controllers
             _logger.LogInformation("Hitting {endpoint} with [{body}]: [{@body}]",
                 AddTeam, nameof(CreateTeamDto), request);
 
-            await _teamService.AddTeam(request);
-            return Ok();
+            var result = await _teamService.AddTeam(request);
+            return result.IsSuccess
+                ? Ok(result.Data)
+                : BadRequest(result.ErrorMessage);
         }
 
         /// <summary>
@@ -104,8 +106,12 @@ namespace Football.Api.Controllers
         {
             _logger.LogInformation("Hitting {endpoint} with [{body}]: [{@body}]",
                 UpdateTeam, nameof(EditTeamDto), team);
-            await _teamService.EditTeam(team);
-            return Ok();
+
+            var result = await _teamService.EditTeam(team);
+
+            return result.IsSuccess
+                ? Ok(result.Data)
+                : BadRequest(result.ErrorMessage);
         }
 
         /// <summary>

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FootballApp.Common.Framework;
+using FootballApp.Common.Framework.Interface;
 using FootballApp.Data.Contexts;
 using FootballApp.Data.Entities;
 using FootballApp.Dto.Dtos.TeamDtos;
@@ -18,10 +20,11 @@ namespace FootballApp.Service.Services
             _mapper = mapper;
         }
 
-        //poprawić, żeby zwracał Dto
-        public async Task<IEnumerable<Team>> GetAllTeams()
+        public async Task<IEnumerable<TeamResponseDto>> GetAllTeams()
         {
-            return await _dataContext.Teams.ToListAsync();
+            var allTeams = await _dataContext.Teams.ToListAsync();
+
+            return _mapper.Map<IEnumerable<TeamResponseDto>>(allTeams);
         }
 
         public async Task<TeamResponseDto> GetTeamById(int id)
@@ -31,33 +34,33 @@ namespace FootballApp.Service.Services
             return _mapper.Map<TeamResponseDto>(team);
         }
 
-        public async Task AddTeam(CreateTeamDto team)
+        public async Task<IActionResult<TeamResponseDto>> AddTeam(CreateTeamDto team)
         {
-            var league = await _dataContext.Leagues.FindAsync(team.LeagueId);
-
-            // zmienić na AutoMapper
-            var newTeam = new Team
-            {
-                Name = team.Name,
-                YearOfFunded = team.YearOfFunded,
-                League = league,
-            };
+            var newTeam = _mapper.Map<Team>(team);
 
             await _dataContext.Teams.AddAsync(newTeam);
             await _dataContext.SaveChangesAsync();
+
+            var teamResponseDto = _mapper.Map<TeamResponseDto>(newTeam);
+
+            return ActionResult<TeamResponseDto>.Success(teamResponseDto);
         }
 
-        public async Task EditTeam(EditTeamDto team)
+
+        public async Task<IActionResult<TeamResponseDto>> EditTeam(EditTeamDto team)
         {
-            var singleTeam = await GetTeamById(team.Id);
+            var singleTeam = await _dataContext.Teams.FirstOrDefaultAsync(t => t.Id == team.Id);
             var league = await _dataContext.Leagues.FindAsync(team.LeagueId);
 
             singleTeam.Id = team.Id;
             singleTeam.Name = team.Name;
             singleTeam.YearOfFunded = team.YearOfFunded;
-            singleTeam.LeagueId = league;
-
+            singleTeam.LeagueId = league.Id;
             await _dataContext.SaveChangesAsync();
+
+            var teamResponseDto = _mapper.Map<TeamResponseDto>(singleTeam);
+
+            return ActionResult<TeamResponseDto>.Success(teamResponseDto);
         }
         public async Task DeleteTeam(int id)
         {
