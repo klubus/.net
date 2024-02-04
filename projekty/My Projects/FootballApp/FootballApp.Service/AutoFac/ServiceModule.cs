@@ -10,6 +10,7 @@ namespace FootballApp.Service.AutoFac
         {
             builder.RegisterType<TeamService>().As<ITeamService>();
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<LeagueService>().As<ILeagueService>();
         }
     }
 }

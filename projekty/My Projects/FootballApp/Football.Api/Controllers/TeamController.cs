@@ -54,10 +54,31 @@ namespace Football.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Team>> Get(int id)
         {
-            _logger.LogInformation("Get Teams by Id - started");
+            _logger.LogInformation("Hitting {endpoint}", GetType().FullName);
 
             return Ok(await _teamService.GetTeamById(id));
         }
+
+        ///// <summary>
+        ///// Get All Teams from League
+        ///// </summary>
+        ///// <returns> <see cref="Team"/> id</returns>
+        ///// <response code="200">OK</response>
+        ///// <response code="403">User is not authorized to invoke endpoint</response>
+        ///// <response code="500">Any exception</response>  
+        //[ProducesResponseType(Status200OK)]
+        //[ProducesResponseType(Status403Forbidden)]
+        //[ProducesResponseType(Status500InternalServerError)]
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<List<Team>>> GetTeamFromLeague(int id)
+        //{
+        //    _logger.LogInformation("Hitting {endpoint}", GetType().FullName);
+
+        //    var teams = await _teamService.GetTeamsFromLeague(id);
+
+        //    return Ok(teams);
+        //}
+
 
         /// <summary>
         /// Creates Team based on given CreateTeamDto

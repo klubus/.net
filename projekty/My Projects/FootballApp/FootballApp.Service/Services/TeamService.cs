@@ -33,6 +33,14 @@ namespace FootballApp.Service.Services
 
             return _mapper.Map<TeamResponseDto>(team);
         }
+        public async Task<IEnumerable<TeamResponseDto>> GetTeamsFromLeague(int leagueId)
+        {
+            var league = await _dataContext.Leagues.FirstOrDefaultAsync(t => t.Id == leagueId);
+
+            var teams = league.Teams.ToList();
+
+            return _mapper.Map<IEnumerable<TeamResponseDto>>(teams);
+        }
 
         public async Task<IActionResult<TeamResponseDto>> AddTeam(CreateTeamDto team)
         {
