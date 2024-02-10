@@ -551,3 +551,108 @@
 2024-02-04 20:04:22.6922 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
 2024-02-04 20:04:22.7167 Info Configuration initialized.
 2024-02-04 20:04:23.2949 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:05:51.9333 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-08 21:05:51.9680 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-08 21:05:51.9680 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-08 21:05:52.0153 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-08 21:05:52.0463 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:05:52.0830 Info Configuration initialized.
+2024-02-08 21:05:53.2958 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:06:32.2191 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-08 21:06:32.2457 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-08 21:06:32.2457 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-08 21:06:32.2828 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-08 21:06:32.3091 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:06:32.3469 Info Configuration initialized.
+2024-02-08 21:06:33.0957 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:10:07.2446 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-08 21:10:07.2854 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-08 21:10:07.2873 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-08 21:10:07.3427 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-08 21:10:07.3750 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:10:07.4117 Info Configuration initialized.
+2024-02-08 21:10:08.1367 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:57:51.3082 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-08 21:57:51.3479 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-08 21:57:51.3479 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-08 21:57:51.3936 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-08 21:57:51.4333 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:57:51.4782 Info Configuration initialized.
+2024-02-08 21:57:52.4395 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:58:25.2946 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-08 21:58:25.3241 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-08 21:58:25.3241 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-08 21:58:25.3736 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-08 21:58:25.4126 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 21:58:25.4566 Info Configuration initialized.
+2024-02-08 21:58:26.3040 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 22:52:47.1608 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-08 22:52:47.2777 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-08 22:52:47.2777 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-08 22:52:47.3541 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-08 22:52:47.4125 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 22:52:47.5368 Info Configuration initialized.
+2024-02-08 22:52:48.1467 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 23:04:33.2637 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-08 23:04:33.3116 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-08 23:04:33.3116 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-08 23:04:33.3909 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-08 23:04:33.4201 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-08 23:04:33.4518 Info Configuration initialized.
+2024-02-08 23:04:33.9884 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:44:31.7830 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-10 09:44:31.8738 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-10 09:44:31.8738 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-10 09:44:31.9445 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-10 09:44:31.9813 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:44:32.0284 Info Configuration initialized.
+2024-02-10 09:44:33.5508 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:47:54.6024 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-10 09:47:54.6513 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-10 09:47:54.6513 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-10 09:47:54.9398 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-10 09:47:55.0890 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:47:55.1576 Info Configuration initialized.
+2024-02-10 09:47:56.1143 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:52:24.2439 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-10 09:52:24.2917 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-10 09:52:24.2917 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-10 09:52:24.3684 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-10 09:52:24.4279 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:52:24.5489 Info Configuration initialized.
+2024-02-10 09:52:25.7927 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:54:04.0439 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-10 09:54:05.2870 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-10 09:54:05.2870 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-10 09:54:05.4173 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-10 09:54:05.4822 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:54:05.5738 Info Configuration initialized.
+2024-02-10 09:54:06.8008 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:54:42.5776 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-10 09:54:42.6177 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-10 09:54:42.6177 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-10 09:54:42.6652 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-10 09:54:42.6925 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:54:42.7215 Info Configuration initialized.
+2024-02-10 09:54:43.2338 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:56:00.3742 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-10 09:56:00.4055 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-10 09:56:00.4055 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-10 09:56:00.4632 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-10 09:56:00.5114 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:56:00.5506 Info Configuration initialized.
+2024-02-10 09:56:01.2731 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:59:53.1253 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-10 09:59:53.1560 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-10 09:59:53.1560 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-10 09:59:53.3251 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-10 09:59:53.3672 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 09:59:53.4014 Info Configuration initialized.
+2024-02-10 09:59:53.8915 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 10:01:53.2780 Info Registered target NLog.Targets.FileTarget(Name=allfile)
+2024-02-10 10:01:53.5162 Info Registered target NLog.Targets.FileTarget(Name=ownFile-web)
+2024-02-10 10:01:53.5223 Info Registered target NLog.Targets.ConsoleTarget(Name=lifetimeConsole)
+2024-02-10 10:01:53.6341 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.2.8.2366. Product version: 5.2.8+f586f1341c46fa38aaaff4c641e7f0fa7e813943. GlobalAssemblyCache: False
+2024-02-10 10:01:53.6845 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config
+2024-02-10 10:01:53.7365 Info Configuration initialized.
+2024-02-10 10:01:56.0439 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=54, FilePath=C:\Users\kluba\Pulpit\dotnet\.net\projekty\My Projects\FootballApp\Football.Api\bin\Debug\net6.0\NLog.config

@@ -35,9 +35,7 @@ namespace FootballApp.Service.Services
         }
         public async Task<IEnumerable<TeamResponseDto>> GetTeamsFromLeague(int leagueId)
         {
-            var league = await _dataContext.Leagues.FirstOrDefaultAsync(t => t.Id == leagueId);
-
-            var teams = league.Teams.ToList();
+            var teams = await _dataContext.Teams.Where(league => league.League.Id.ToString() == leagueId.ToString()).ToListAsync();
 
             return _mapper.Map<IEnumerable<TeamResponseDto>>(teams);
         }

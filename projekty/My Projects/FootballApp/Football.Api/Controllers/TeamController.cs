@@ -59,25 +59,26 @@ namespace Football.Api.Controllers
             return Ok(await _teamService.GetTeamById(id));
         }
 
-        ///// <summary>
-        ///// Get All Teams from League
-        ///// </summary>
-        ///// <returns> <see cref="Team"/> id</returns>
-        ///// <response code="200">OK</response>
-        ///// <response code="403">User is not authorized to invoke endpoint</response>
-        ///// <response code="500">Any exception</response>  
-        //[ProducesResponseType(Status200OK)]
-        //[ProducesResponseType(Status403Forbidden)]
-        //[ProducesResponseType(Status500InternalServerError)]
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<List<Team>>> GetTeamFromLeague(int id)
-        //{
-        //    _logger.LogInformation("Hitting {endpoint}", GetType().FullName);
+        /// <summary>
+        /// Get All Teams from League
+        /// </summary>
+        /// <returns> <see cref="Team"/> id</returns>
+        /// <response code="200">OK</response>
+        /// <response code="403">User is not authorized to invoke endpoint</response>
+        /// <response code="500">Any exception</response>  
+        [ProducesResponseType(Status200OK)]
+        [ProducesResponseType(Status403Forbidden)]
+        [ProducesResponseType(Status500InternalServerError)]
+        [Route("GetTeamsFromLeague")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Team>>> GetTeamsFromLeague(int leagueId)
+        {
+            _logger.LogInformation("Hitting {endpoint}", GetType().FullName);
 
-        //    var teams = await _teamService.GetTeamsFromLeague(id);
+            var teams = await _teamService.GetTeamsFromLeague(leagueId);
 
-        //    return Ok(teams);
-        //}
+            return Ok(teams);
+        }
 
 
         /// <summary>
